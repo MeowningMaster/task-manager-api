@@ -13,12 +13,15 @@
         "test": "vitest run"
     },
     "dependencies": {
+        "@fastify/swagger": "^8.8.0",
+        "@fastify/swagger-ui": "^1.9.2",
         "@fastify/type-provider-typebox": "^3.3.0",
         "@paralleldrive/cuid2": "^2.2.1",
         "@sinclair/typebox": "^0.29.6",
         "ajv": "^8.12.0",
         "ajv-formats": "^2.1.1",
         "fastify": "^4.20.0",
+        "fastify-plugin": "^4.5.1",
         "pino": "^8.14.1",
         "pino-pretty": "^10.1.0",
         "yaml": "^2.3.1"
