@@ -6,7 +6,6 @@ type Parameters = readonly Provider[]
 
 type ProviderState<Instance = unknown> = {
     parameters?: Parameters
-    /** Promise of instance */
     promise?: Promise<Instance>
     /** For debugging and tests */
     name?: string
@@ -15,9 +14,9 @@ type ProviderState<Instance = unknown> = {
 export type Resolve<TProvider extends Provider> = TProvider extends Provider
     ? Awaited<ReturnType<TProvider>>
     : never
-export type ResolveParameters<TParameters extends Parameters> = {
+export type ResolveParameters<TParameters extends Parameters> = Writable<{
     [Key in keyof TParameters]: Resolve<TParameters[Key]>
-}
+}>
 
 type Writable<T> = { -readonly [P in keyof T]: T[P] }
 
@@ -28,10 +27,10 @@ export function Container(options: { debug: boolean } = { debug: false }) {
     return {
         add<
             const TParameters extends Parameters,
-            ResolvedParameters extends unknown[] = Writable<
+            TProvider extends Provider = Provider<
+                unknown,
                 ResolveParameters<TParameters>
             >,
-            TProvider extends Provider = Provider<unknown, ResolvedParameters>,
         >(
             parameters: TParameters,
             provider: TProvider,

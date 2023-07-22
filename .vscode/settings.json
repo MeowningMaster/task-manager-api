@@ -13,8 +13,7 @@
     "explorer.fileNesting.expand": false,
     "explorer.fileNesting.patterns": {
         "package.json": ".editorconfig, .eslint*, .pnpm*, .prettier*, vite.config.*, pnpm*, prettier*, tsconfig.*, .npmrc, .swcrc, .gitignore",
-        "*config.yml": "$(capture)config.template.yml",
-        "*.ts": "$(capture).test.ts",
-        "deployment.yml": "Dockerfile"
+        "*config.yaml": "$(capture)config.template.yaml",
+        "*.ts": "$(capture).test.ts"
     },
 }

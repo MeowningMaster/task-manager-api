@@ -1,5 +1,5 @@
-import fastify from 'fastify'
+import { ioc } from './ioc/index.js'
+import { Server } from './server/index.js'
 
-const server = fastify()
-
-server.listen({ port: 3000 })
+const server = await ioc.resolve(Server)
+await server.listen()
