@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD CONSTRAINT `login_idx` UNIQUE(`login`);

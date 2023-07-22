@@ -12,7 +12,7 @@
         "start": "run-s build launch",
         "format": "prettier --write src/**/*.ts",
         "test": "vitest run",
-        "migration": "pnpm drizzle-kit generate:mysql"
+        "migrate": "pnpm drizzle-kit generate:mysql"
     },
     "dependencies": {
         "@fastify/swagger": "^8.8.0",

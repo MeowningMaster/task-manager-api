@@ -7,13 +7,20 @@ import {
     text,
     mysqlEnum,
     datetime,
+    uniqueIndex,
 } from 'drizzle-orm/mysql-core'
 
-export const user = mysqlTable('user', {
-    id: int('id').autoincrement().primaryKey(),
-    login: varchar('login', { length: 256 }).notNull(),
-    passwordHash: char('password_hash', { length: 60 }).notNull(),
-})
+export const user = mysqlTable(
+    'user',
+    {
+        id: int('id').autoincrement().primaryKey(),
+        login: varchar('login', { length: 256 }).notNull(),
+        passwordHash: char('password_hash', { length: 60 }).notNull(),
+    },
+    (user) => ({
+        loginIndex: uniqueIndex('login_idx').on(user.login),
+    }),
+)
 
 export const task = mysqlTable('task', {
     id: serial('id').primaryKey(),
