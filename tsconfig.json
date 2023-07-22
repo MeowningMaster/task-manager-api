@@ -1,0 +1,25 @@
+/* https://aka.ms/tsconfig.json */
+{
+    "include": [
+        "src"
+    ],
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "Node16",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "incremental": true,
+        "tsBuildInfoFile": "./dist/tsbuildinfo",
+        "paths": {
+            "#root/*": [
+                "./*"
+            ],
+        },
+    },
+}

@@ -1,0 +1,20 @@
+{
+    // use worspace's version of typescript
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    // formatting
+    "editor.formatOnSave": true,
+    "[javascript][typescript][javascriptreact][typescriptreact][json][css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    // debugging
+    "debug.javascript.autoAttachFilter": "onlyWithFlag",
+    // file nesting
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "package.json": ".editorconfig, .eslint*, .pnpm*, .prettier*, vite.config.*, pnpm*, prettier*, tsconfig.*, .npmrc, .swcrc, .gitignore",
+        "*config.yml": "$(capture)config.template.yml",
+        "*.ts": "$(capture).test.ts",
+        "deployment.yml": "Dockerfile"
+    },
+}
