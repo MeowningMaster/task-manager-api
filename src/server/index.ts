@@ -3,7 +3,7 @@ import { ioc } from '#root/ioc/index.js'
 import { Logger } from '#root/logger/index.js'
 import { validator } from '#root/validator/index.js'
 import fastify from 'fastify'
-import { Controllers } from './controllers.js'
+import { Controllers } from '../components/controllers.js'
 import { Documentation } from './documentation.js'
 
 export const Server = ioc.add(
