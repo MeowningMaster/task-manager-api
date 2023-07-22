@@ -4,6 +4,7 @@ import type { TAnySchema, Static } from '@sinclair/typebox'
 
 export const validator = new ajv.default({
     strict: true,
+    useDefaults: true,
 })
 
 ajvFormats.default(validator)

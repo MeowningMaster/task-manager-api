@@ -1,5 +1,6 @@
 {
     "name": "task-manager-api",
+    "description": "Simple task manager API",
     "version": "1.0.0",
     "type": "module",
     "imports": {
@@ -10,7 +11,8 @@
         "launch": "node dist/main.js",
         "start": "run-s build launch",
         "format": "prettier --write src/**/*.ts",
-        "test": "vitest run"
+        "test": "vitest run",
+        "migration": "pnpm drizzle-kit generate:mysql"
     },
     "dependencies": {
         "@fastify/swagger": "^8.8.0",
@@ -20,13 +22,16 @@
         "@sinclair/typebox": "^0.29.6",
         "ajv": "^8.12.0",
         "ajv-formats": "^2.1.1",
+        "drizzle-orm": "^0.27.2",
         "fastify": "^4.20.0",
         "fastify-plugin": "^4.5.1",
+        "mysql2": "^3.5.2",
         "pino": "^8.14.1",
         "pino-pretty": "^10.1.0",
         "yaml": "^2.3.1"
     },
     "devDependencies": {
+        "drizzle-kit": "^0.19.10",
         "npm-run-all": "^4.1.5",
         "prettier": "^3.0.0",
         "typescript": "^5.1.6",

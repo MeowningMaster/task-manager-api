@@ -1,4 +1,4 @@
-import { Static, Type } from '@sinclair/typebox'
+import { Type } from '@sinclair/typebox'
 
 const Jwt = Type.Object({
     secret: Type.String(),
@@ -10,7 +10,14 @@ const Log = Type.Object({
     file: Type.Optional(Type.String()),
 })
 
-export type Config = Static<typeof Config>
+const Database = Type.Object({
+    host: Type.String(),
+    port: Type.Integer({ minimum: 1, maximum: 65535 }),
+    database: Type.String(),
+    user: Type.String(),
+    password: Type.String(),
+})
+
 export const Config = Type.Object({
     port: Type.Integer({ minimum: 1, maximum: 65535 }),
     externalUrl: Type.String({ format: 'uri' }),
@@ -18,4 +25,11 @@ export const Config = Type.Object({
     expose: Type.Boolean(),
     jwt: Jwt,
     log: Log,
+    database: Database,
+})
+
+export const PackageJson = Type.Object({
+    name: Type.String(),
+    description: Type.String(),
+    version: Type.String(),
 })

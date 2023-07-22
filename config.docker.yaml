@@ -14,8 +14,8 @@ log:
     file: logs/main.log
 
 database:
-    host: localhost
-    port: 4306
+    host: db
+    port: 3306
     database: main
     user: admin
     password: password
