@@ -1,0 +1,6 @@
+port: 5000
+externalUrl: http://localhost:5000
+
+jwt:
+    secret: E/=_r+a]H'8wHG](99"9'^X?K~+U\#]Gmged
+    expiresIn: 1d
