@@ -1,3 +1,5 @@
+import { Writable } from '#root/utilities/types/writable.js'
+
 export type Provider<R = unknown, P extends any[] = any[]> = {
     (...parameters: P): R
 }
@@ -17,8 +19,6 @@ export type Resolve<TProvider extends Provider> = TProvider extends Provider
 export type ResolveParameters<TParameters extends Parameters> = Writable<{
     [Key in keyof TParameters]: Resolve<TParameters[Key]>
 }>
-
-type Writable<T> = { -readonly [P in keyof T]: T[P] }
 
 /** Inverse of control container that resolves providers and theirs dependencies */
 export function Container(options: { debug: boolean } = { debug: false }) {

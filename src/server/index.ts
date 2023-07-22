@@ -4,7 +4,7 @@ import { Logger } from '#root/logger/index.js'
 import { validator } from '#root/validator/index.js'
 import fastify from 'fastify'
 import { Controllers } from '../components/controllers.js'
-import { Documentation } from './documentation.js'
+import { Documentation } from './documentation/index.js'
 
 export const Server = ioc.add(
     [Config, Logger, Controllers, Documentation],

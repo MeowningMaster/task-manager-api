@@ -20,6 +20,7 @@
         "@fastify/type-provider-typebox": "^3.3.0",
         "@paralleldrive/cuid2": "^2.2.1",
         "@sinclair/typebox": "^0.29.6",
+        "@types/bcryptjs": "^2.4.2",
         "ajv": "^8.12.0",
         "ajv-formats": "^2.1.1",
         "drizzle-orm": "^0.27.2",
@@ -31,7 +32,10 @@
         "yaml": "^2.3.1"
     },
     "devDependencies": {
+        "@types/jsonwebtoken": "^9.0.2",
+        "bcryptjs": "^2.4.3",
         "drizzle-kit": "^0.19.10",
+        "jsonwebtoken": "^9.0.1",
         "npm-run-all": "^4.1.5",
         "prettier": "^3.0.0",
         "typescript": "^5.1.6",
