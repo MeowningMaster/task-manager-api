@@ -77,9 +77,10 @@ export function Container(options: { debug: boolean } = { debug: false }) {
             }
             const parametersInstances = await Promise.all(parametersPromises)
 
-            resolveInstance(
-                provider(...parametersInstances) as Promise<Resolve<TProvider>>,
-            )
+            const instance = (await provider(
+                ...parametersInstances,
+            )) as Promise<Resolve<TProvider>>
+            resolveInstance(instance)
             if (options.debug) {
                 console.log(`Resolved ${state.name}`)
             }

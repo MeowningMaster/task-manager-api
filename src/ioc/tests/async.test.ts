@@ -1,17 +1,10 @@
 import { Container } from '../index.js'
 import { expect, test } from 'vitest'
+import { delay } from './delay.js'
 
 const ioc = Container({ debug: true })
 
 const message = 'hello world'
-
-function delay(ms: number) {
-    return new Promise<void>((resolve) => {
-        setTimeout(() => {
-            resolve()
-        }, ms)
-    })
-}
 
 const A = ioc.add(
     [],
