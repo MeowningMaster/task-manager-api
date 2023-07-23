@@ -2,9 +2,24 @@ import { ServerError } from '#root/error/server-error.js'
 import {
     CompareOperations,
     Conditions,
+    LikeOperatiors,
     compareOperations,
+    likeOperatiors,
 } from '#root/validator/conditions-adapter.js'
-import { SQL, eq, isNotNull, isNull, lt, ne, lte, gt, gte } from 'drizzle-orm'
+import {
+    SQL,
+    eq,
+    isNotNull,
+    isNull,
+    lt,
+    ne,
+    lte,
+    gt,
+    gte,
+    like,
+    ilike,
+    AnyColumn,
+} from 'drizzle-orm'
 import { MySqlTableWithColumns } from 'drizzle-orm/mysql-core'
 
 const comparators = {
@@ -12,7 +27,15 @@ const comparators = {
     lte,
     gt,
     gte,
-} as const satisfies Record<CompareOperations, (letf: SQL, right: SQL) => SQL>
+} as const satisfies Record<CompareOperations, (left: SQL, right: SQL) => SQL>
+
+const likes = {
+    like,
+    ilike,
+} as const satisfies Record<
+    LikeOperatiors,
+    (left: AnyColumn, right: SQL) => SQL
+>
 
 export function adaptConditions(
     table: MySqlTableWithColumns<any>,
@@ -42,6 +65,18 @@ export function adaptConditions(
                 })
             }
             result.push(comparators[operation](colunm, value))
+        }
+        for (const operation of likeOperatiors) {
+            const value = params[operation]
+            if (value === undefined) {
+                continue
+            }
+            if (typeof value !== 'string') {
+                throw new ServerError(`${operation} should be string`, {
+                    context: { field, value },
+                })
+            }
+            result.push(likes[operation](colunm, value))
         }
     }
     return result

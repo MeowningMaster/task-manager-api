@@ -11,10 +11,21 @@ export type Conditions = Static<
     TObject<AdaptProperties<Record<string, TSchema>>>
 >
 
+export type EqualityOperators = (typeof equalityOperators)[number]
+export const equalityOperators = ['eq', 'ne'] as const
+
 export type CompareOperations = (typeof compareOperations)[number]
 export const compareOperations = ['lt', 'gt', 'lte', 'gte'] as const
+
+export type LikeOperatiors = (typeof likeOperatiors)[number]
+export const likeOperatiors = ['like', 'ilike'] as const
+
 export type AllOperations = (typeof allOperations)[number]
-export const allOperations = ['eq', 'ne', ...compareOperations] as const
+export const allOperations = [
+    ...equalityOperators,
+    ...compareOperations,
+    ...likeOperatiors,
+] as const
 
 type AdaptProperty<T extends TSchema> = TPartial<
     TObject<Record<AllOperations, T>>
