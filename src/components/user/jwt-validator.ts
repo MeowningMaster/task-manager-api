@@ -41,7 +41,6 @@ export const JwtValidator = ioc.add([Config], (config) =>
                 done()
             } catch (error) {
                 if (error instanceof Error) {
-                    // todo: handle jwt errors gently
                     done(error)
                 } else {
                     done(

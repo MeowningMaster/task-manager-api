@@ -5,6 +5,7 @@ import { validator } from '#root/validator/index.js'
 import fastify from 'fastify'
 import { Controllers } from '../components/controllers.js'
 import { Documentation } from './documentation/index.js'
+import { errorHandler } from '#root/error/error-handler.js'
 
 export const Server = ioc.add(
     [Config, Logger, Controllers, Documentation],
@@ -15,6 +16,7 @@ export const Server = ioc.add(
         server.setValidatorCompiler(({ schema }) => validator.compile(schema))
 
         await server.register(documentation, { routePrefix: '/documentation' })
+        await server.register(errorHandler)
         await server.register(controllers, { prefix: '/v1' })
 
         return {
