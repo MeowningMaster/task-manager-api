@@ -1,7 +1,7 @@
 import { Database } from '#root/database/index.js'
 import { task } from '#root/database/schema/task.js'
 import { ioc } from '#root/ioc/index.js'
-import { SQL, and, asc, desc, eq } from 'drizzle-orm'
+import { SQL, and, asc, desc, eq, isNull } from 'drizzle-orm'
 import { Filter, List, Post, Put, Sort } from './schema.js'
 import { ServerError } from '#root/error/server-error.js'
 
@@ -13,13 +13,16 @@ export const Logic = ioc.add([Database], (db) => {
                 .from(task)
                 .limit(options.limit)
                 .offset(options.offset ?? 0)
-            const eqs: SQL<unknown>[] = [eq(task.userId, userId)]
+            const conditions: SQL<unknown>[] = [eq(task.userId, userId)]
             if (options.filter) {
                 for (const [field, value] of Object.entries(options.filter)) {
-                    eqs.push(eq(task[field as keyof Filter], value as any))
+                    const colunm = task[field as keyof Filter]
+                    conditions.push(
+                        value === null ? isNull(colunm) : eq(colunm, value),
+                    )
                 }
             }
-            query = query.where(and(...eqs))
+            query = query.where(and(...conditions))
             if (options.sort) {
                 query = query.orderBy(
                     ...Object.entries(options.sort).map(([field, order]) => {
