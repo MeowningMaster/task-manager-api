@@ -5,7 +5,9 @@ import * as task from './task/index.js'
 import * as user from './user/index.js'
 import * as email from './email/index.js'
 
-const controllers = {
+export type Controllers = keyof typeof controllers
+
+export const controllers = {
     task: ['/task', task],
     user: ['/user', user],
     email: ['/email', email],
@@ -17,17 +19,20 @@ const controllers = {
     ]
 >
 
-const entries = Object.entries(controllers)
-
 export const Controllers = ioc.add(
-    entries.map(([, [, component]]) => component.Controller),
-    (...plugins): FastifyPluginAsyncTypebox =>
-        async (server) => {
-            await Promise.all(
-                plugins.map((plugin, index) => {
-                    const [, [prefix]] = entries[index]
-                    return server.register(plugin, { prefix })
-                }),
-            )
-        },
+    [],
+    (): FastifyPluginAsyncTypebox => async (server) => {
+        const enabledControllers = Object.values(controllers).filter(
+            ([, component]) => {
+                const state = ioc.getOrThrow(component.Controller)
+                return !state.disabled
+            },
+        )
+        await Promise.all(
+            enabledControllers.map(async ([prefix, component]) => {
+                const plugin = await ioc.resolve(component.Controller)
+                server.register(plugin, { prefix })
+            }),
+        )
+    },
 )

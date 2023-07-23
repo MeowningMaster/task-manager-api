@@ -5,6 +5,7 @@ import { Credentials } from '../user/schema.js'
 import { faker } from '@faker-js/faker'
 import * as user from '../user/index.js'
 import { Get, List, Post, Task, statuses } from './schema.js'
+import { partial } from '#root/ioc/partial.js'
 
 const userLogic = await ioc.resolve(user.Logic)
 
@@ -26,6 +27,10 @@ afterAll(() => {
     userLogic.delete(userId)
 })
 
+partial(ioc, {
+    controllers: ['task'],
+    services: ['database'],
+})
 const { inject } = await ioc.resolve(Server)
 
 function generateTask(): Omit<Task, 'id' | 'userId'> {

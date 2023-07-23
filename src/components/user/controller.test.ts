@@ -3,7 +3,12 @@ import { Server } from '#root/server/index.js'
 import { test } from 'vitest'
 import { Credentials, Login, Register } from './schema.js'
 import { faker } from '@faker-js/faker'
+import { partial } from '#root/ioc/partial.js'
 
+partial(ioc, {
+    controllers: ['user'],
+    services: ['database'],
+})
 const { inject } = await ioc.resolve(Server)
 
 const credentials: Credentials = {

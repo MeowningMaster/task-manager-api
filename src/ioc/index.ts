@@ -1,3 +1,4 @@
+import { ServerError } from '#root/error/server-error.js'
 import { Writable } from '#root/utilities/types/writable.js'
 
 export type Provider<R = unknown, P extends any[] = any[]> = {
@@ -11,6 +12,7 @@ type ProviderState<Instance = unknown> = {
     promise?: Promise<Instance>
     /** For debugging and tests */
     name?: string
+    disabled: boolean
 }
 
 export type Resolve<TProvider extends Provider> = TProvider extends Provider
@@ -20,7 +22,17 @@ export type ResolveParameters<TParameters extends Parameters> = Writable<{
     [Key in keyof TParameters]: Resolve<TParameters[Key]>
 }>
 
+const disabled = new Proxy(
+    {},
+    {
+        get() {
+            throw new ServerError('Provider is disabled')
+        },
+    },
+)
+
 /** Inverse of control container that resolves providers and theirs dependencies */
+export type Container = ReturnType<typeof Container>
 export function Container(options: { debug: boolean } = { debug: false }) {
     const states = new Map<Provider, ProviderState>()
 
@@ -36,7 +48,7 @@ export function Container(options: { debug: boolean } = { debug: false }) {
             provider: TProvider,
             name?: string,
         ): TProvider {
-            states.set(provider, { parameters, name })
+            states.set(provider, { parameters, name, disabled: false })
             return provider
         },
 
@@ -54,8 +66,15 @@ export function Container(options: { debug: boolean } = { debug: false }) {
             return state
         },
 
-        async resolve<TProvider extends Provider>(provider: TProvider) {
+        async resolve<TProvider extends Provider>(
+            provider: TProvider,
+        ): Promise<Resolve<TProvider>> {
             const state = this.getOrThrow(provider)
+
+            if (state.disabled) {
+                return disabled as Promise<Resolve<TProvider>>
+            }
+
             if (state.promise !== undefined) {
                 return state.promise
             }
@@ -93,6 +112,8 @@ export function Container(options: { debug: boolean } = { debug: false }) {
         clear() {
             states.clear()
         },
+
+        disabled,
     }
 }
 
