@@ -15,8 +15,8 @@ export const Task = Type.Object({
 })
 
 const Pagination = Type.Object({
-    skip: Type.Optional(Type.Integer({ minimum: 0 })),
-    take: Type.Integer({ minimum: 1, default: 50 }),
+    offset: Type.Optional(Type.Integer({ minimum: 0 })),
+    limit: Type.Integer({ minimum: 1, default: 50 }),
 })
 
 const SortOptions = TypeApi.StringEnum(['asc', 'desc'])

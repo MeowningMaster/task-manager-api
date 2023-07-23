@@ -12,8 +12,8 @@ export const Logic = ioc.add([Database], (db) => {
                 .select()
                 .from(task)
                 .where(eq(task.userId, userId))
-                .limit(options.take)
-                .offset(options.skip ?? 0)
+                .limit(options.limit)
+                .offset(options.offset ?? 0)
         },
 
         async get(userId: number, taskId: number) {
