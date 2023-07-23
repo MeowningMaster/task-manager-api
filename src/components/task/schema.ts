@@ -1,6 +1,7 @@
 import { RouteSchema, StaticRoute } from '#root/server/schema.js'
 import { Static, Type } from '@sinclair/typebox'
 import * as TypeApi from '#root/validator/open-api.js'
+import { ConditionsAdapter } from '#root/validator/conditions-adapter.js'
 
 const Status = TypeApi.StringEnum(['pending', 'in-progress', 'completed'])
 
@@ -15,12 +16,12 @@ export const Task = Type.Object({
 })
 
 const Pagination = Type.Object({
-    offset: Type.Optional(Type.Integer({ minimum: 0 })),
+    offset: Type.Integer({ minimum: 0, default: 0 }),
     limit: Type.Integer({ minimum: 1, default: 50 }),
 })
 
 export type Filter = Static<typeof Filter>
-const Filter = Type.Partial(Type.Omit(Task, ['id', 'userId']))
+const Filter = Type.Omit(Task, ['id', 'userId'])
 
 const SortOptions = TypeApi.StringEnum(['asc', 'desc'])
 
@@ -37,7 +38,7 @@ export const List = {
         Type.Intersect([
             Pagination,
             Type.Object({
-                filter: Type.Optional(Filter),
+                filter: Type.Optional(ConditionsAdapter(Filter)),
                 sort: Type.Optional(Sort),
             }),
         ]),
