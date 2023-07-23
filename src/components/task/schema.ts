@@ -19,8 +19,12 @@ const Pagination = Type.Object({
     limit: Type.Integer({ minimum: 1, default: 50 }),
 })
 
+export type Filter = Static<typeof Filter>
+const Filter = Type.Partial(Type.Omit(Task, ['id', 'userId']))
+
 const SortOptions = TypeApi.StringEnum(['asc', 'desc'])
 
+export type Sort = Static<typeof Sort>
 const Sort = Type.Object({
     title: Type.Optional(SortOptions),
     status: Type.Optional(SortOptions),
@@ -32,7 +36,10 @@ export const List = {
     querystring: TypeApi.Deep(
         Type.Composite([
             Pagination,
-            Type.Object({ sort: Type.Optional(Sort) }),
+            Type.Object({
+                filter: Type.Optional(Filter),
+                sort: Type.Optional(Sort),
+            }),
         ]),
     ),
     response: {
