@@ -21,16 +21,32 @@ const Pagination = Type.Object({
 })
 
 export type Filter = Static<typeof Filter>
-const Filter = Type.Omit(Task, ['id', 'userId'])
+const Filter = Type.Omit(Task, ['id', 'userId'], {
+    examples: [
+        null,
+        { status: { eq: 'pending' } },
+        { title: { like: '%work%' } },
+        { dueDate: { gt: '2020-00-20T00:00:00Z', lt: '2024-00-00T00:00:00Z' } },
+        {
+            notifyDate: {
+                gte: '2020-00-20T00:00:00Z',
+                lte: '2024-00-00T00:00:00Z',
+            },
+        },
+    ],
+})
 
 const SortOptions = TypeApi.StringEnum(['asc', 'desc'])
 
 export type Sort = Static<typeof Sort>
-const Sort = Type.Object({
-    title: Type.Optional(SortOptions),
-    status: Type.Optional(SortOptions),
-    dueDate: Type.Optional(SortOptions),
-})
+const Sort = Type.Object(
+    {
+        title: Type.Optional(SortOptions),
+        status: Type.Optional(SortOptions),
+        dueDate: Type.Optional(SortOptions),
+    },
+    { examples: [null, { title: 'asc' }, { dueDate: 'desc', status: 'asc' }] },
+)
 
 export type List = StaticRoute<typeof List>
 export const List = {
