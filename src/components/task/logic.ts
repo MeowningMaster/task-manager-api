@@ -1,10 +1,10 @@
-import { Database } from '#root/database/index.js'
-import { task } from '#root/database/schema/task.js'
 import { ioc } from '#root/ioc/index.js'
 import { SQL, and, asc, desc, eq } from 'drizzle-orm'
 import { List, Post, Put, Sort } from './schema.js'
 import { ServerError } from '#root/error/server-error.js'
-import { adaptConditions } from '#root/database/adapt-conditions.js'
+import { Database } from '#root/services/database/index.js'
+import { task } from '#root/services/database/schema/task.js'
+import { adaptConditions } from '#root/services/database/adapt-conditions.js'
 
 export const Logic = ioc.add([Database], (db) => {
     return {

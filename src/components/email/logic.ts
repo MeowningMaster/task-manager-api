@@ -1,11 +1,11 @@
 import { Config } from '#root/config/index.js'
-import { Database } from '#root/database/index.js'
-import { email } from '#root/database/schema/email.js'
 import { ioc } from '#root/ioc/index.js'
 import { InferModel, and, eq } from 'drizzle-orm'
 import jwt from 'jsonwebtoken'
 import { JwtPayload } from './schema.js'
-import { Mailer } from './mailer.js'
+import { Mailer } from '#root/services/mailer.js'
+import { Database } from '#root/services/database/index.js'
+import { email } from '#root/services/database/schema/email.js'
 
 export const Logic = ioc.add(
     [Database, Config, Mailer],

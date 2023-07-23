@@ -1,5 +1,3 @@
-import { Database } from '#root/database/index.js'
-import { user } from '#root/database/schema/user.js'
 import { ioc } from '#root/ioc/index.js'
 import { eq } from 'drizzle-orm'
 import { JwtPayload, Credentials } from './schema.js'
@@ -7,6 +5,8 @@ import { ServerError } from '#root/error/server-error.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { Config } from '#root/config/index.js'
+import { Database } from '#root/services/database/index.js'
+import { user } from '#root/services/database/schema/user.js'
 
 export const Logic = ioc.add([Database, Config], (db, config) => {
     return {
