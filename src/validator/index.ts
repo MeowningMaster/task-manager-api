@@ -3,7 +3,7 @@ import ajvFormats from 'ajv-formats'
 import type { TAnySchema, Static } from '@sinclair/typebox'
 
 export const validator = new ajv.default({
-    strict: true,
+    strict: false,
     useDefaults: true,
     coerceTypes: true,
 })

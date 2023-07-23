@@ -14,14 +14,27 @@ export const Task = Type.Object({
     dueDate: TypeApi.Nullable(Type.String({ format: 'date-time' })),
 })
 
-export type Pagination = Static<typeof Pagination>
 const Pagination = Type.Object({
     skip: Type.Optional(Type.Integer({ minimum: 0 })),
     take: Type.Integer({ minimum: 1, default: 50 }),
 })
 
+const SortOptions = TypeApi.StringEnum(['asc', 'desc'])
+
+const Sort = Type.Object({
+    title: Type.Optional(SortOptions),
+    status: Type.Optional(SortOptions),
+    dueDate: Type.Optional(SortOptions),
+})
+
+export type List = StaticRoute<typeof List>
 export const List = {
-    querystring: Pagination,
+    querystring: TypeApi.Deep(
+        Type.Composite([
+            Pagination,
+            Type.Object({ sort: Type.Optional(Sort) }),
+        ]),
+    ),
     response: {
         200: Type.Array(Task),
     },

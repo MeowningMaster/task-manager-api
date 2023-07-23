@@ -27,6 +27,7 @@
         "drizzle-orm": "^0.27.2",
         "fastify": "^4.20.0",
         "fastify-plugin": "^4.5.1",
+        "fastify-qs": "^4.0.2",
         "mysql2": "^3.5.2",
         "pino": "^8.14.1",
         "pino-pretty": "^10.1.0",

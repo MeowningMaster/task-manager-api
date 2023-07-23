@@ -2,18 +2,18 @@ import { Database } from '#root/database/index.js'
 import { task } from '#root/database/schema/task.js'
 import { ioc } from '#root/ioc/index.js'
 import { and, eq } from 'drizzle-orm'
-import { Pagination, Post, Put } from './schema.js'
+import { List, Post, Put } from './schema.js'
 import { ServerError } from '#root/error/server-error.js'
 
 export const Logic = ioc.add([Database], (db) => {
     return {
-        async list(userId: number, pagination: Pagination) {
+        async list(userId: number, options: List['querystring']) {
             return db
                 .select()
                 .from(task)
                 .where(eq(task.userId, userId))
-                .limit(pagination.take)
-                .offset(pagination.skip ?? 0)
+                .limit(options.take)
+                .offset(options.skip ?? 0)
         },
 
         async get(userId: number, taskId: number) {
