@@ -13,6 +13,7 @@ declare module 'fastify' {
 }
 
 export const tokenHeader = 'authorization' as const
+const bearerPrefix = 'Bearer ' as const
 
 type Security = { [securityLabel: string]: readonly string[] }
 
@@ -29,11 +30,22 @@ export const JwtValidator = ioc.add([Config], (config) =>
         server.decorateRequest('jwt', null)
 
         server.addHook('preHandler', (request, reply, done) => {
-            const token = request.headers[tokenHeader]
-            if (!token) {
-                done(new ServerError('No Authorization header'))
+            const header = request.headers[tokenHeader]
+            if (!header) {
+                done(new ServerError('No Authorization header', { code: 400 }))
                 return
             }
+
+            if (!header.startsWith(bearerPrefix)) {
+                done(
+                    new ServerError('Authorization must be Bearer', {
+                        code: 400,
+                        context: { header },
+                    }),
+                )
+            }
+
+            const token = header.substring(bearerPrefix.length)
 
             try {
                 const payload = jwt.verify(token, config.jwt.secret)
@@ -41,14 +53,20 @@ export const JwtValidator = ioc.add([Config], (config) =>
                 done()
             } catch (error) {
                 if (error instanceof Error) {
-                    done(error)
-                } else {
                     done(
-                        new ServerError('Unknown error during JWT validation', {
-                            context: { token, error },
+                        new ServerError(error.message, {
+                            code: 400,
+                            context: { header },
                         }),
                     )
+                    return
                 }
+
+                done(
+                    new ServerError('Unknown error during JWT validation', {
+                        context: { header, error },
+                    }),
+                )
             }
         })
 

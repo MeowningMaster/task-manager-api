@@ -31,9 +31,9 @@ export const Documentation = ioc.add(
                     components: {
                         securitySchemes: {
                             [tokenSecuritySchema]: {
-                                type: 'apiKey',
-                                in: 'header',
-                                name: tokenHeader,
+                                type: 'http',
+                                scheme: 'bearer',
+                                bearerFormat: 'JWT',
                             },
                         },
                     },
