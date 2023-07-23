@@ -14,8 +14,12 @@ export const Controller = ioc.add(
                 await logic.register(request.body)
             })
 
-            server.post('/login', { schema: Login }, async (request) => {
-                return logic.login(request.body)
-            })
+            server.post(
+                '/login',
+                { schema: Login, config: { rateLimit: { max: 5 } } },
+                async (request) => {
+                    return logic.login(request.body)
+                },
+            )
         },
 )

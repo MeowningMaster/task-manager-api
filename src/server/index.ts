@@ -7,6 +7,7 @@ import { Controllers } from '../components/controllers.js'
 import { Documentation } from './documentation/index.js'
 import { errorHandler } from '#root/error/error-handler.js'
 import fastifyQs from 'fastify-qs'
+import { rateLimit } from './rate-limit.js'
 
 export const Server = ioc.add(
     [Config, Logger, Controllers, Documentation],
@@ -19,6 +20,7 @@ export const Server = ioc.add(
         await server.register(documentation, { routePrefix: '/documentation' })
         await server.register(errorHandler)
         await server.register(fastifyQs.default)
+        await server.register(rateLimit)
         await server.register(controllers, { prefix: '/v1' })
 
         return {
