@@ -32,7 +32,7 @@ export const JwtValidator = ioc.add([Config], (config) =>
         server.addHook('preHandler', (request, reply, done) => {
             const header = request.headers[tokenHeader]
             if (!header) {
-                done(new ServerError('No Authorization header', { code: 400 }))
+                done(new ServerError('No Authorization header', { code: 401 }))
                 return
             }
 
