@@ -1,6 +1,6 @@
 import { ioc } from '#root/ioc/index.js'
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
-import { List } from './schema.js'
+import { Delete, Get, List, Post, Put } from './schema.js'
 import { Logic } from './logic.js'
 import { tagsAdder } from '#root/server/documentation/tags-adder.js'
 import { JwtValidator } from '../user/jwt-validator.js'
@@ -12,20 +12,24 @@ export const Controller = ioc.add(
             await server.register(tagsAdder, { tags: ['task'] })
             await server.register(jwtValidator)
 
-            server.get('/:id', () => {})
+            server.get('/:id', { schema: Get }, (request) => {
+                return logic.get(request.jwt.id, request.params.id)
+            })
 
-            server.get(
-                '/list',
-                {
-                    schema: List,
-                },
-                (request) => {
-                    return logic.list(request.jwt.id, request.query)
-                },
-            )
+            server.get('/list', { schema: List }, (request) => {
+                return logic.list(request.jwt.id, request.query)
+            })
 
-            server.post('/', () => {})
+            server.post('/', { schema: Post }, async (request) => {
+                await logic.post(request.jwt.id, request.body)
+            })
 
-            server.put('/:id', () => {})
+            server.put('/:id', { schema: Put }, async (request) => {
+                await logic.put(request.jwt.id, request.params.id, request.body)
+            })
+
+            server.delete('/:id', { schema: Delete }, async (request) => {
+                await logic.delete(request.jwt.id, request.params.id)
+            })
         },
 )

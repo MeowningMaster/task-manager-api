@@ -1,4 +1,4 @@
-import { RouteSchema } from '#root/server/schema.js'
+import { RouteSchema, StaticRoute } from '#root/server/schema.js'
 import { Static, Type } from '@sinclair/typebox'
 import * as TypeApi from '#root/validator/open-api.js'
 
@@ -34,4 +34,23 @@ export const Get = {
     response: {
         200: Task,
     },
+} satisfies RouteSchema
+
+export type Post = StaticRoute<typeof Post>
+export const Post = {
+    body: Type.Omit(Task, ['id', 'userId']),
+} satisfies RouteSchema
+
+export type Put = StaticRoute<typeof Put>
+export const Put = {
+    params: Type.Object({
+        id: Type.Number({ minimum: 0 }),
+    }),
+    body: Type.Partial(Type.Omit(Task, ['id', 'userId'])),
+} satisfies RouteSchema
+
+export const Delete = {
+    params: Type.Object({
+        id: Type.Number({ minimum: 0 }),
+    }),
 } satisfies RouteSchema
