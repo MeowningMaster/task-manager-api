@@ -1,10 +1,10 @@
-import { Static, TObject, TSchema } from '@sinclair/typebox'
+import { Static, TSchema } from '@sinclair/typebox'
 import { FastifySchema } from 'fastify'
 
 export interface RouteSchema extends FastifySchema {
     body?: TSchema
-    querystring?: TObject
-    params?: TObject
+    querystring?: TSchema
+    params?: TSchema
     response?: { [Key: number]: TSchema }
 }
 

@@ -13,7 +13,6 @@ export const Logic = ioc.add([Database], (db) => {
                 .from(task)
                 .limit(options.limit)
                 .offset(options.offset ?? 0)
-
             const eqs: SQL<unknown>[] = [eq(task.userId, userId)]
             if (options.filter) {
                 for (const [field, value] of Object.entries(options.filter)) {
@@ -21,7 +20,6 @@ export const Logic = ioc.add([Database], (db) => {
                 }
             }
             query = query.where(and(...eqs))
-
             if (options.sort) {
                 query = query.orderBy(
                     ...Object.entries(options.sort).map(([field, order]) => {
@@ -30,7 +28,6 @@ export const Logic = ioc.add([Database], (db) => {
                     }),
                 )
             }
-
             return await query
         },
 

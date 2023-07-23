@@ -34,7 +34,7 @@ const Sort = Type.Object({
 export type List = StaticRoute<typeof List>
 export const List = {
     querystring: TypeApi.Deep(
-        Type.Composite([
+        Type.Intersect([
             Pagination,
             Type.Object({
                 filter: Type.Optional(Filter),

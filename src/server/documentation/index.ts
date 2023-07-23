@@ -20,6 +20,7 @@ export const Documentation = ioc.add(
         Plugin<Options>()(async (server, { routePrefix }) => {
             await server.register(fastifySwagger, {
                 openapi: {
+                    openapi: '3.1.0',
                     info: {
                         title: config.packageJson.name,
                         version: config.packageJson.version,
