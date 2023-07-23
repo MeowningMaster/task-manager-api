@@ -11,22 +11,29 @@ const credentials: Credentials = {
     password: faker.internet.password(),
 }
 
-test('User', async () => {
+test('Register', async () => {
     await inject<Register>({
         method: 'POST',
         path: '/v1/user/register',
         body: credentials,
     })
+})
 
+let bearer: string
+
+test('Login', async () => {
     const { body: token } = await inject<Login>({
         method: 'POST',
         path: '/v1/user/login',
         body: credentials,
     })
+    bearer = `Bearer ${token}`
+})
 
+test('Delete', async () => {
     await inject({
         method: 'DELETE',
         path: '/v1/user',
-        headers: { authorization: `Bearer ${token}` },
+        headers: { authorization: bearer },
     })
 })
