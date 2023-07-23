@@ -61,6 +61,9 @@ devDependencies:
   '@types/jsonwebtoken':
     specifier: ^9.0.2
     version: 9.0.2
+  '@types/nodemailer':
+    specifier: ^6.4.8
+    version: 6.4.8
   bcryptjs:
     specifier: ^2.4.3
     version: 2.4.3
@@ -70,6 +73,9 @@ devDependencies:
   jsonwebtoken:
     specifier: ^9.0.1
     version: 9.0.1
+  nodemailer:
+    specifier: ^6.9.4
+    version: 6.9.4
   npm-run-all:
     specifier: ^4.1.5
     version: 4.1.5
@@ -643,6 +649,12 @@ packages:
 
   /@types/node@20.4.4:
     resolution: {integrity: sha512-CukZhumInROvLq3+b5gLev+vgpsIqC2D0deQr/yS1WnxvmYLlJXZpaQrQiseMY+6xusl79E04UjWoqyr+t1/Ew==}
+    dev: true
+
+  /@types/nodemailer@6.4.8:
+    resolution: {integrity: sha512-oVsJSCkqViCn8/pEu2hfjwVO+Gb3e+eTWjg3PcjeFKRItfKpKwHphQqbYmPQrlMk+op7pNNWPbsJIEthpFN/OQ==}
+    dependencies:
+      '@types/node': 20.4.4
     dev: true
 
   /@vitest/expect@0.33.0:
@@ -1931,6 +1943,11 @@ packages:
 
   /nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
+    dev: true
+
+  /nodemailer@6.9.4:
+    resolution: {integrity: sha512-CXjQvrQZV4+6X5wP6ZIgdehJamI63MFoYFGGPtHudWym9qaEHDNdPzaj5bfMCvxG1vhAileSWW90q7nL0N36mA==}
+    engines: {node: '>=6.0.0'}
     dev: true
 
   /normalize-package-data@2.5.0:

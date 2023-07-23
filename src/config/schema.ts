@@ -10,12 +10,23 @@ const Log = Type.Object({
     file: Type.Optional(Type.String()),
 })
 
+const Port = Type.Integer({ minimum: 1, maximum: 65535 })
+
 const Database = Type.Object({
     host: Type.String(),
-    port: Type.Integer({ minimum: 1, maximum: 65535 }),
+    port: Port,
     database: Type.String(),
     user: Type.String(),
     password: Type.String(),
+})
+
+const Mailer = Type.Object({
+    host: Type.String(),
+    port: Port,
+    auth: Type.Object({
+        user: Type.String(),
+        pass: Type.String(),
+    }),
 })
 
 export const Config = Type.Object({
@@ -26,6 +37,7 @@ export const Config = Type.Object({
     jwt: Jwt,
     log: Log,
     database: Database,
+    mailer: Mailer,
 })
 
 export const PackageJson = Type.Object({

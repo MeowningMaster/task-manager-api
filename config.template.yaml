@@ -19,3 +19,10 @@ database:
     database: main
     user: admin
     password: password
+
+mailer:
+    host: smtp.ethereal.email
+    port: 587
+    auth:
+        user: willis.grady@ethereal.email
+        pass: 8WAQYgceSW5MghHU7Y
