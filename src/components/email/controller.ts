@@ -29,9 +29,18 @@ export const Controller = ioc.add(
                     }
                 })
 
-                server.delete('/', async (request) => {
-                    await logic.delete(request.jwt.id)
-                })
+                server.delete(
+                    '/',
+                    {
+                        schema: {
+                            description:
+                                "Delete the current user's email address",
+                        },
+                    },
+                    async (request) => {
+                        await logic.delete(request.jwt.id)
+                    },
+                )
             }
             await server.register(secureRoutes)
         },

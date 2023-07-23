@@ -26,9 +26,13 @@ export const Controller = ioc.add(
             await server.register(async (server) => {
                 await server.register(jwtValidator)
 
-                server.delete('/', async (request) => {
-                    await logic.delete(request.jwt.id)
-                })
+                server.delete(
+                    '/',
+                    { schema: { description: 'Delete the current user' } },
+                    async (request) => {
+                        await logic.delete(request.jwt.id)
+                    },
+                )
             })
         },
 )

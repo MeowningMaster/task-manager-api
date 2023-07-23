@@ -8,10 +8,13 @@ export const Credentials = Type.Object({
 })
 
 export const Register = {
+    description: 'Register a new user',
     body: Credentials,
 } satisfies RouteSchema
 
 export const Login = {
+    description:
+        'Get a JWT token for temporary access. The token should be used as a bearer auth',
     body: Credentials,
     response: {
         200: Type.String({ description: 'Auth token' }),

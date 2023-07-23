@@ -22,6 +22,8 @@ const Pagination = Type.Object({
 
 export type Filter = Static<typeof Filter>
 const Filter = Type.Omit(Task, ['id', 'userId'], {
+    description:
+        '[Explanation of operators](https://orm.drizzle.team/docs/operators)',
     examples: [
         null,
         { status: { eq: 'pending' } },
@@ -50,6 +52,8 @@ const Sort = Type.Object(
 
 export type List = StaticRoute<typeof List>
 export const List = {
+    description:
+        'Get an array of tasks with pagination, filtration and sorting',
     querystring: TypeApi.Deep(
         Type.Intersect([
             Pagination,
@@ -65,6 +69,7 @@ export const List = {
 } satisfies RouteSchema
 
 export const Get = {
+    description: 'Get a task by id',
     params: Type.Object({
         id: Type.Integer({ minimum: 0 }),
     }),
@@ -75,11 +80,13 @@ export const Get = {
 
 export type Post = StaticRoute<typeof Post>
 export const Post = {
+    description: 'Create a new task',
     body: Type.Omit(Task, ['id', 'userId']),
 } satisfies RouteSchema
 
 export type Put = StaticRoute<typeof Put>
 export const Put = {
+    description: 'Modify an existing task',
     params: Type.Object({
         id: Type.Number({ minimum: 0 }),
     }),
@@ -87,6 +94,7 @@ export const Put = {
 } satisfies RouteSchema
 
 export const Delete = {
+    description: 'Delete a task by id',
     params: Type.Object({
         id: Type.Number({ minimum: 0 }),
     }),
