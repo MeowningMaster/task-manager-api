@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifySchema, InjectOptions } from 'fastify'
-import { RouteInjectOptions } from './schema.js'
+import { RouteInjectOptions } from '../route-schema.js'
 import { ServerError } from '#root/error/server-error.js'
 
 /** Request fastify from tests */

@@ -2,8 +2,8 @@ import { ioc } from '#root/ioc/index.js'
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
 import { Logic } from './logic.js'
 import { Confirm, Get, Put } from './schema.js'
-import { tagsAdder } from '#root/server/documentation/tags-adder.js'
-import { JwtValidator } from '../user/jwt-validator.js'
+import { tagsAdder } from '#root/server/plugins/documentation/tags-adder.js'
+import { JwtValidator } from '../../server/plugins/jwt-validator.js'
 
 export const Controller = ioc.add(
     [Logic, JwtValidator],

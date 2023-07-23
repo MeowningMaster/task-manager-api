@@ -1,9 +1,9 @@
 import { Config } from '#root/config/index.js'
 import { ServerError } from '#root/error/server-error.js'
 import { ioc } from '#root/ioc/index.js'
-import { tokenSecuritySchema } from '#root/server/documentation/index.js'
-import { Plugin } from '#root/server/plugin.js'
-import { JwtPayload } from './schema.js'
+import { tokenSecuritySchema } from '#root/server/plugins/documentation/index.js'
+import { Plugin } from '#root/server/plugin-adapter.js'
+import { JwtPayload } from '../../components/user/schema.js'
 import jwt from 'jsonwebtoken'
 
 declare module 'fastify' {

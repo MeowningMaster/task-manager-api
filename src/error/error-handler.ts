@@ -1,4 +1,4 @@
-import { Plugin } from '#root/server/plugin.js'
+import { Plugin } from '#root/server/plugin-adapter.js'
 import { ServerError } from './server-error.js'
 
 export const errorHandler = Plugin()((server, options, done) => {

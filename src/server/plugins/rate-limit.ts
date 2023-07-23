@@ -1,5 +1,5 @@
 import { ServerError } from '#root/error/server-error.js'
-import { Plugin } from './plugin.js'
+import { Plugin } from '../plugin-adapter.js'
 import { fastifyRateLimit } from '@fastify/rate-limit'
 
 export const rateLimit = Plugin()(async (server, options) => {

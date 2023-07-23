@@ -1,4 +1,4 @@
-import { Plugin } from '../plugin.js'
+import { Plugin } from '../../plugin-adapter.js'
 import { Tags } from './tags.js'
 
 interface TagsPluginOptions {

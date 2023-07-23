@@ -4,11 +4,11 @@ import { Logger } from '#root/logger/index.js'
 import { validator } from '#root/validator/index.js'
 import fastify from 'fastify'
 import { Controllers } from '../components/controllers.js'
-import { Documentation } from './documentation/index.js'
+import { Documentation } from './plugins/documentation/index.js'
 import { errorHandler } from '#root/error/error-handler.js'
 import fastifyQs from 'fastify-qs'
-import { rateLimit } from './rate-limit.js'
-import { Injector } from './injector.js'
+import { rateLimit } from './plugins/rate-limit.js'
+import { Injector } from './plugins/injector.js'
 
 export const Server = ioc.add(
     [Config, Logger, Controllers, Documentation],

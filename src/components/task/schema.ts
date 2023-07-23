@@ -1,4 +1,4 @@
-import { RouteSchema, StaticRoute } from '#root/server/schema.js'
+import { RouteSchema, StaticRoute } from '#root/server/route-schema.js'
 import { Static, Type } from '@sinclair/typebox'
 import * as TypeApi from '#root/validator/open-api.js'
 import { ConditionsAdapter } from '#root/validator/conditions-adapter.js'

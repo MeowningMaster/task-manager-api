@@ -1,12 +1,12 @@
 import { ioc } from '#root/ioc/index.js'
 import { fastifySwagger } from '@fastify/swagger'
 import { fastifySwaggerUi } from '@fastify/swagger-ui'
-import { Plugin } from '../plugin.js'
+import { Plugin } from '../../plugin-adapter.js'
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
 import { Config } from '#root/config/index.js'
 import { TagsObjects, tagsObjects } from './tags.js'
 import { Writable } from '#root/utilities/types/writable.js'
-import { tokenHeader } from '#root/components/user/jwt-validator.js'
+import { tokenHeader } from '#root/server/plugins/jwt-validator.js'
 
 type Options = {
     routePrefix: string

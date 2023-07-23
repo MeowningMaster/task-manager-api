@@ -1,4 +1,4 @@
-import { RouteSchema } from '#root/server/schema.js'
+import { RouteSchema } from '#root/server/route-schema.js'
 import { Type } from '@sinclair/typebox'
 import * as TypeApi from '#root/validator/open-api.js'
 

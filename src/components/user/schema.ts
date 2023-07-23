@@ -1,4 +1,4 @@
-import { RouteSchema, StaticRoute } from '#root/server/schema.js'
+import { RouteSchema, StaticRoute } from '#root/server/route-schema.js'
 import { Static, Type } from '@sinclair/typebox'
 
 export type Credentials = Static<typeof Credentials>
