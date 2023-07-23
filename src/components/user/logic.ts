@@ -25,7 +25,10 @@ export const Logic = ioc.add([Database, Config], (db, config) => {
             const salt = await bcrypt.genSalt()
             const passwordHash = await bcrypt.hash(password, salt)
 
-            await db.insert(user).values({ login, passwordHash })
+            const [result] = await db
+                .insert(user)
+                .values({ login, passwordHash })
+            return result.insertId
         },
 
         async login({ login, password }: Credentials) {

@@ -47,7 +47,10 @@ export const Logic = ioc.add([Database], (db) => {
         },
 
         async post(userId: number, options: Post['body']) {
-            await db.insert(task).values({ ...options, userId })
+            const [result] = await db
+                .insert(task)
+                .values({ ...options, userId })
+            return result.insertId
         },
 
         async put(userId: number, taskId: number, options: Put['body']) {

@@ -3,8 +3,10 @@ import { Static, Type } from '@sinclair/typebox'
 import * as TypeApi from '#root/validator/open-api.js'
 import { ConditionsAdapter } from '#root/validator/conditions-adapter.js'
 
-const Status = TypeApi.StringEnum(['pending', 'in-progress', 'completed'])
+export const statuses = ['pending', 'in-progress', 'completed'] as const
+const Status = TypeApi.StringEnum(statuses)
 
+export type Task = Static<typeof Task>
 export const Task = Type.Object({
     id: Type.Integer({ minimum: 0 }),
     userId: Type.Integer({ minimum: 0 }),
@@ -68,6 +70,7 @@ export const List = {
     },
 } satisfies RouteSchema
 
+export type Get = StaticRoute<typeof Get>
 export const Get = {
     description: 'Get a task by id',
     params: Type.Object({
@@ -82,6 +85,9 @@ export type Post = StaticRoute<typeof Post>
 export const Post = {
     description: 'Create a new task',
     body: Type.Omit(Task, ['id', 'userId']),
+    response: {
+        200: Type.Number({ minimum: 0, description: 'id' }),
+    },
 } satisfies RouteSchema
 
 export type Put = StaticRoute<typeof Put>

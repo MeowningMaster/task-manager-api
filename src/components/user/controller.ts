@@ -12,7 +12,7 @@ export const Controller = ioc.add(
             await server.register(tagsAdder, { tags: ['user'] })
 
             server.post('/register', { schema: Register }, async (request) => {
-                await logic.register(request.body)
+                return logic.register(request.body)
             })
 
             server.post(

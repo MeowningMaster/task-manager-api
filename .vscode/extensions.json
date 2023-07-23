@@ -3,5 +3,6 @@
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
         "redhat.vscode-yaml",
+        "ZixuanChen.vitest-explorer"
     ]
 }

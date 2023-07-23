@@ -1,6 +1,8 @@
 {
     // use worspace's version of typescript
     "typescript.tsdk": "./node_modules/typescript/lib",
+    // hint vitest plugin to use pnpm
+    "vitest.commandLine": "pnpm exec vitest",
     // formatting
     "editor.formatOnSave": true,
     "[javascript][typescript][javascriptreact][typescriptreact][json][css]": {

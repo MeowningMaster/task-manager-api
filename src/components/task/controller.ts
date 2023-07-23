@@ -21,7 +21,7 @@ export const Controller = ioc.add(
             })
 
             server.post('/', { schema: Post }, async (request) => {
-                await logic.post(request.jwt.id, request.body)
+                return logic.post(request.jwt.id, request.body)
             })
 
             server.put('/:id', { schema: Put }, async (request) => {

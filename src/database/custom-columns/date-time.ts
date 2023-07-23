@@ -7,7 +7,7 @@ export const utc = (name: string, precision = 3) =>
             return `datetime(${precision})`
         },
         toDriver(date) {
-            return date.slice(0, 19).replace('T', ' ')
+            return date.slice(0, 23).replace('T', ' ')
         },
         fromDriver(date) {
             return date.replace(' ', 'T') + 'Z'

@@ -12,6 +12,7 @@
         "start": "run-s build launch",
         "format": "prettier --write src/**/*.ts",
         "test": "vitest run",
+        "test-components": "vitest run --dir ./src/components",
         "launch-migrate": "pnpm drizzle-kit generate:mysql",
         "migrate": "run-s build launch-migrate"
     },
@@ -35,6 +36,7 @@
         "yaml": "^2.3.1"
     },
     "devDependencies": {
+        "@faker-js/faker": "^8.0.2",
         "@types/jsonwebtoken": "^9.0.2",
         "@types/nodemailer": "^6.4.8",
         "bcryptjs": "^2.4.3",

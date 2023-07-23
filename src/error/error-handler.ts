@@ -2,6 +2,13 @@ import { Plugin } from '#root/server/plugin.js'
 import { ServerError } from './server-error.js'
 
 export const errorHandler = Plugin()((server, options, done) => {
+    server.setSchemaErrorFormatter((errors) => {
+        return new ServerError('Validation error', {
+            code: 400,
+            context: { errors },
+        })
+    })
+
     server.setErrorHandler(function (error: unknown, request, reply) {
         const handleError = (error: ServerError) => {
             if (error.code >= 500 && error.code < 600) {
