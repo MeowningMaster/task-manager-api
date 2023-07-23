@@ -5,24 +5,27 @@ import * as task from './task/index.js'
 import * as user from './user/index.js'
 import * as email from './email/index.js'
 
-const controllers: Array<
-    [
+const controllers = {
+    task: ['/task', task],
+    user: ['/user', user],
+    email: ['/email', email],
+} as const satisfies Record<
+    string,
+    readonly [
         prefix: string,
         component: { Controller: Provider<FastifyPluginAsyncTypebox> },
     ]
-> = [
-    ['/task', task],
-    ['/user', user],
-    ['/email', email],
-]
+>
+
+const entries = Object.entries(controllers)
 
 export const Controllers = ioc.add(
-    controllers.map(([, component]) => component.Controller),
+    entries.map(([, [, component]]) => component.Controller),
     (...plugins): FastifyPluginAsyncTypebox =>
         async (server) => {
             await Promise.all(
                 plugins.map((plugin, index) => {
-                    const [prefix] = controllers[index]
+                    const [, [prefix]] = entries[index]
                     return server.register(plugin, { prefix })
                 }),
             )
