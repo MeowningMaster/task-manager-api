@@ -1,6 +1,10 @@
 import { FastifyInstance, FastifySchema, InjectOptions } from 'fastify'
-import { RouteInjectOptions } from '../route-schema.js'
 import { ServerError } from '#root/error/server-error.js'
+
+export type RouteInjectOptions<T extends FastifySchema = FastifySchema> =
+    InjectOptions & {
+        body?: T['body']
+    }
 
 /** Request fastify from tests */
 export function Injector(server: FastifyInstance) {
