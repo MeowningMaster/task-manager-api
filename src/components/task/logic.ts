@@ -1,19 +1,31 @@
 import { Database } from '#root/database/index.js'
 import { task } from '#root/database/schema/task.js'
 import { ioc } from '#root/ioc/index.js'
-import { and, eq } from 'drizzle-orm'
+import { and, asc, desc, eq } from 'drizzle-orm'
 import { List, Post, Put } from './schema.js'
 import { ServerError } from '#root/error/server-error.js'
 
 export const Logic = ioc.add([Database], (db) => {
     return {
         async list(userId: number, options: List['querystring']) {
-            return db
+            let query = db
                 .select()
                 .from(task)
                 .where(eq(task.userId, userId))
                 .limit(options.limit)
                 .offset(options.offset ?? 0)
+
+            if (options.sort) {
+                query = query.orderBy(
+                    ...Object.entries(options.sort).map(([field, order]) => {
+                        const operation = order === 'asc' ? asc : desc
+                        return operation(
+                            task[field as keyof List['querystring']['sort']],
+                        )
+                    }),
+                )
+            }
+            return await query
         },
 
         async get(userId: number, taskId: number) {
