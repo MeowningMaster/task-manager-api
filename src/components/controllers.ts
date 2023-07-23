@@ -1,8 +1,9 @@
 import { Provider, ioc } from '#root/ioc/index.js'
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
 
-import * as task from '#root/components/task/index.js'
-import * as user from '#root/components/user/index.js'
+import * as task from './task/index.js'
+import * as user from './user/index.js'
+import * as email from './email/index.js'
 
 const controllers: Array<
     [
@@ -12,6 +13,7 @@ const controllers: Array<
 > = [
     ['/task', task],
     ['/user', user],
+    ['/email', email],
 ]
 
 export const Controllers = ioc.add(

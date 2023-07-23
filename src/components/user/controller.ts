@@ -23,7 +23,7 @@ export const Controller = ioc.add(
                 },
             )
 
-            await server.register(async () => {
+            await server.register(async (server) => {
                 await server.register(jwtValidator)
 
                 server.delete('/', async (request) => {

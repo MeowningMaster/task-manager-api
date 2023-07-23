@@ -7,6 +7,7 @@ export type TagsObjects = typeof tagsObjects
 export const tagsObjects = [
     { name: 'user' },
     { name: 'task' },
+    { name: 'email' },
 ] as const satisfies readonly TagObject[]
 
 export type Tags = {
