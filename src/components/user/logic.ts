@@ -1,5 +1,5 @@
 import { Database } from '#root/database/index.js'
-import { user } from '#root/database/schema.js'
+import { user } from '#root/database/schema/user.js'
 import { ioc } from '#root/ioc/index.js'
 import { eq } from 'drizzle-orm'
 import { JwtPayload, Credentials } from './schema.js'

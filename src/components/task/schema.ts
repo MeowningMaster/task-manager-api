@@ -10,8 +10,8 @@ export const Task = Type.Object({
     title: Type.String(),
     description: Type.String(),
     status: Status,
-    notifyDate: TypeApi.Nullable(TypeApi.Date()),
-    dueDate: TypeApi.Nullable(TypeApi.Date()),
+    notifyDate: TypeApi.Nullable(Type.String({ format: 'date-time' })),
+    dueDate: TypeApi.Nullable(Type.String({ format: 'date-time' })),
 })
 
 export type Pagination = Static<typeof Pagination>

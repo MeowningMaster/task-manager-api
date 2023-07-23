@@ -14,7 +14,7 @@ WORKDIR /app
 COPY --from=builder /app/dist ./dist
 COPY package.json pnpm-lock.yaml ./
 COPY config.docker.yaml ./config.yaml
-COPY ./migration ./migration
+COPY ./migrations ./migrations
 RUN pnpm install --frozen-lockfile --prod
 
 EXPOSE 5000

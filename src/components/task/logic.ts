@@ -1,5 +1,5 @@
 import { Database } from '#root/database/index.js'
-import { task } from '#root/database/schema.js'
+import { task } from '#root/database/schema/task.js'
 import { ioc } from '#root/ioc/index.js'
 import { and, eq } from 'drizzle-orm'
 import { Pagination, Post, Put } from './schema.js'

@@ -1,0 +1,125 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "0edafcc8-e370-479e-adad-f6e9adef14dd",
+  "prevId": "a78ac0aa-d6fe-4a2f-9a4e-f5c9e81f5d24",
+  "tables": {
+    "task": {
+      "name": "task",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "enum('pending','in-progress','completed')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'pending'"
+        },
+        "notify_date": {
+          "name": "notify_date",
+          "type": "datetime(3)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "due_date": {
+          "name": "due_date",
+          "type": "datetime(3)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "task_user_id_user_id_fk": {
+          "name": "task_user_id_user_id_fk",
+          "tableFrom": "task",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "user": {
+      "name": "user",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "login": {
+          "name": "login",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "password_hash": {
+          "name": "password_hash",
+          "type": "char(60)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "login_idx": {
+          "name": "login_idx",
+          "columns": [
+            "login"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
