@@ -3,10 +3,11 @@ import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
 import { Logic } from './logic.js'
 import { Login, Register } from './schema.js'
 import { tagsAdder } from '#root/server/documentation/tags-adder.js'
+import { JwtValidator } from './jwt-validator.js'
 
 export const Controller = ioc.add(
-    [Logic],
-    (logic): FastifyPluginAsyncTypebox =>
+    [Logic, JwtValidator],
+    (logic, jwtValidator): FastifyPluginAsyncTypebox =>
         async (server) => {
             await server.register(tagsAdder, { tags: ['user'] })
 
@@ -21,5 +22,13 @@ export const Controller = ioc.add(
                     return logic.login(request.body)
                 },
             )
+
+            await server.register(async () => {
+                await server.register(jwtValidator)
+
+                server.delete('/', async (request) => {
+                    await logic.delete(request.jwt.id)
+                })
+            })
         },
 )

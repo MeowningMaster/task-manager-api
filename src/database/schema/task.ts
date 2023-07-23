@@ -15,7 +15,7 @@ export const task = mysqlTable(
     {
         id: serial('id').primaryKey(),
         userId: int('user_id')
-            .references(() => user.id)
+            .references(() => user.id, { onDelete: 'cascade' })
             .notNull(),
         title: varchar('name', { length: 256 }).notNull(),
         description: text('description').notNull(),

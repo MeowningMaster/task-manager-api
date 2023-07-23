@@ -29,11 +29,11 @@ export const Logic = ioc.add([Database, Config], (db, config) => {
         },
 
         async login({ login, password }: Credentials) {
-            const [record] = await db
+            const [userRecord] = await db
                 .select()
                 .from(user)
                 .where(eq(user.login, login))
-            if (!record) {
+            if (!userRecord) {
                 throw new ServerError('The user is not registed', {
                     code: 400,
                     context: { login },
@@ -42,7 +42,7 @@ export const Logic = ioc.add([Database, Config], (db, config) => {
 
             const permitted = await bcrypt.compare(
                 password,
-                record.passwordHash,
+                userRecord.passwordHash,
             )
             if (!permitted) {
                 throw new ServerError('The password is incorrect', {
@@ -51,11 +51,18 @@ export const Logic = ioc.add([Database, Config], (db, config) => {
                 })
             }
 
-            const tokenPayload: JwtPayload = { id: record.id, login }
+            const tokenPayload: JwtPayload = {
+                id: userRecord.id,
+                login,
+            }
 
             return jwt.sign(tokenPayload, config.jwt.secret, {
                 expiresIn: config.jwt.expiresIn,
             })
+        },
+
+        async delete(userId: number) {
+            await db.delete(user).where(eq(user.id, userId))
         },
     }
 })
