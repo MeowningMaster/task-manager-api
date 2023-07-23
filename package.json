@@ -16,6 +16,7 @@
         "migrate": "run-s build launch-migrate"
     },
     "dependencies": {
+        "@fastify/rate-limit": "^8.0.3",
         "@fastify/swagger": "^8.8.0",
         "@fastify/swagger-ui": "^1.9.2",
         "@fastify/type-provider-typebox": "^3.3.0",
