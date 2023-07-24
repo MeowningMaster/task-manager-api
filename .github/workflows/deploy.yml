@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+    push:
+        branches: ['main']
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: self-hosted
+
+        steps:
+            - uses: actions/checkout@v3
+            - name: Copy config
+              run: cp /home/noroot/task-manager/config.docker.yaml ./
+            - name: Build app image
+              run: docker compose build
+            - name: Start compose
+              run: docker compose up -d
