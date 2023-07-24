@@ -29,6 +29,11 @@ const Mailer = Type.Object({
     }),
 })
 
+const Redis = Type.Object({
+    host: Type.String(),
+    port: Type.Number(),
+})
+
 export const Config = Type.Object({
     port: Type.Integer({ minimum: 1, maximum: 65535 }),
     externalUrl: Type.String({ format: 'uri' }),
@@ -38,6 +43,7 @@ export const Config = Type.Object({
     log: Log,
     database: Database,
     mailer: Mailer,
+    redis: Redis,
 })
 
 export const PackageJson = Type.Object({
