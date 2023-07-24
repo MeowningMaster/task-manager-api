@@ -1,6 +1,6 @@
 import { Container } from '../index.js'
 import { expect, test } from 'vitest'
-import { delay } from './delay.js'
+import { delay } from '../../utilities/delay.js'
 
 const ioc = Container({ debug: true })
 
