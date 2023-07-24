@@ -11,10 +11,10 @@ services:
     db:
         image: mysql:latest
         environment:
-            MYSQL_ROOT_PASSWORD: root-password
-            MYSQL_DATABASE: main
-            MYSQL_USER: admin
-            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root-password}
+            MYSQL_DATABASE: ${DB_NAME:-main}
+            MYSQL_USER: ${DB_USER:-admin}
+            MYSQL_PASSWORD: ${DB_PASSWORD:-password}
         ports:
             - '3306:3306'
         volumes:
