@@ -30,11 +30,11 @@ const Filter = Type.Omit(Task, ['id', 'userId'], {
         null,
         { status: { eq: 'pending' } },
         { title: { like: '%work%' } },
-        { dueDate: { gt: '2020-00-20T00:00:00Z', lt: '2024-00-00T00:00:00Z' } },
+        { dueDate: { gt: '2020-01-20T00:00:00Z', lt: '2024-01-01T00:00:00Z' } },
         {
             notifyDate: {
-                gte: '2020-00-20T00:00:00Z',
-                lte: '2024-00-00T00:00:00Z',
+                gte: '2020-01-20T00:00:00Z',
+                lte: '2024-01-01T00:00:00Z',
             },
         },
     ],
