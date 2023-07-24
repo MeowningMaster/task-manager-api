@@ -19,6 +19,7 @@ API is hosted on Digital Ocean. Visit [interactive documentation](http://146.190
   - rate limiting
   - pagination, filtering, and sorting for list queries
   - comprehensive error handling
+  - graceful shutdown
 - Logging via [pino](https://getpino.io/)
 - Simple [inverse on control container](./src/ioc/index.ts)
   - clean server components structure with automatic resolution
