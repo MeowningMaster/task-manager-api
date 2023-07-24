@@ -1,12 +1,13 @@
 import { ioc } from '#root/ioc/index.js'
-import { SQL, and, asc, desc, eq } from 'drizzle-orm'
+import { InferModel, SQL, and, asc, desc, eq } from 'drizzle-orm'
 import { List, Post, Put, Sort } from './schema.js'
 import { ServerError } from '#root/error/server-error.js'
 import { Database } from '#root/services/database/index.js'
 import { task } from '#root/services/database/schema/task.js'
 import { adaptConditions } from '#root/services/database/adapt-conditions.js'
+import { Notifier } from '#root/services/notifier.js'
 
-export const Logic = ioc.add([Database], (db) => {
+export const Logic = ioc.add([Database, Notifier], (db, notifier) => {
     return {
         async list(userId: number, options: List['querystring']) {
             let query = db
@@ -30,7 +31,10 @@ export const Logic = ioc.add([Database], (db) => {
             return await query
         },
 
-        async get(userId: number, taskId: number) {
+        async get(
+            userId: number,
+            taskId: number,
+        ): Promise<InferModel<typeof task> | undefined> {
             const [record] = await db
                 .select()
                 .from(task)
@@ -50,7 +54,13 @@ export const Logic = ioc.add([Database], (db) => {
             const [result] = await db
                 .insert(task)
                 .values({ ...options, userId })
-            return result.insertId
+            const taskId = result.insertId
+
+            if (options.notifyDate) {
+                await notifier.set(userId, taskId, options.notifyDate)
+            }
+
+            return taskId
         },
 
         async put(userId: number, taskId: number, options: Put['body']) {
@@ -58,12 +68,16 @@ export const Logic = ioc.add([Database], (db) => {
                 .update(task)
                 .set(options)
                 .where(and(eq(task.userId, userId), eq(task.id, taskId)))
+
+            await notifier.set(userId, taskId, options.notifyDate ?? null)
         },
 
         async delete(userId: number, taskId: number) {
             await db
                 .delete(task)
                 .where(and(eq(task.userId, userId), eq(task.id, taskId)))
+
+            await notifier.set(userId, taskId, null)
         },
     }
 })

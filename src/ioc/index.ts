@@ -25,8 +25,10 @@ export type ResolveParameters<TParameters extends Parameters> = Writable<{
 const disabled = new Proxy(
     {},
     {
-        get() {
-            throw new ServerError('Provider is disabled')
+        get(target, reciever) {
+            if (reciever !== 'then') {
+                throw new ServerError('Provider is disabled')
+            }
         },
     },
 )

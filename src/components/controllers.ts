@@ -19,20 +19,22 @@ export const controllers = {
     ]
 >
 
+const entries = Object.entries(controllers)
+
 export const Controllers = ioc.add(
-    [],
-    (): FastifyPluginAsyncTypebox => async (server) => {
-        const enabledControllers = Object.values(controllers).filter(
-            ([, component]) => {
-                const state = ioc.getOrThrow(component.Controller)
-                return !state.disabled
-            },
-        )
-        await Promise.all(
-            enabledControllers.map(async ([prefix, component]) => {
-                const plugin = await ioc.resolve(component.Controller)
-                server.register(plugin, { prefix })
-            }),
-        )
-    },
+    entries.map(([, [, component]]) => component.Controller),
+    (...plugins): FastifyPluginAsyncTypebox =>
+        async (server) => {
+            await Promise.all(
+                entries
+                    .map(async ([, [prefix]], index) => {
+                        const plugin = plugins[index]
+                        if (plugin === ioc.disabled) {
+                            return null
+                        }
+                        return server.register(plugin, { prefix })
+                    })
+                    .filter((result) => result !== null),
+            )
+        },
 )

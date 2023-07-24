@@ -1,3 +1,4 @@
+import { Task } from '#root/components/task/schema.js'
 import { Config } from '#root/config/index.js'
 import { ioc } from '#root/ioc/index.js'
 import nodemailer from 'nodemailer'
@@ -17,6 +18,15 @@ export const Mailer = ioc.add([Config], async (config) => {
                 to: email,
                 subject: 'Confirmation email',
                 html: `<a href="${confirmUrl}">Confirm</a>`,
+            })
+        },
+
+        async sendTaskNotification(email: string, task: Task) {
+            await mailer.sendMail({
+                from,
+                to: email,
+                subject: 'Task notification',
+                html: `<h1>${task.title}</h1><p>${task.description}</p>`,
             })
         },
     }

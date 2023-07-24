@@ -29,7 +29,7 @@ afterAll(() => {
 
 partial(ioc, {
     controllers: ['task'],
-    services: ['database'],
+    services: ['database', 'notifier'],
 })
 const { inject } = await ioc.resolve(Server)
 
