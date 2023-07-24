@@ -2,6 +2,7 @@ version: '3'
 services:
     app:
         build: .
+        restart: always
         ports:
             - '5000:5000'
         depends_on:
@@ -10,6 +11,7 @@ services:
 
     db:
         image: mysql:latest
+        restart: always
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root-password}
             MYSQL_DATABASE: ${DB_NAME:-main}
@@ -22,6 +24,7 @@ services:
 
     redis:
         image: redis:latest
+        restart: always
         ports:
             - '6379:6379'
         volumes:
