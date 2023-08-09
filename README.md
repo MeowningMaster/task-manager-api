@@ -1,5 +1,5 @@
 # task-manager-api
-Claimr technical assignment
+Claimr technical assignment. [Task description](./articles/task-description.md)
 
 ## Hosted API
 API is hosted on Digital Ocean. Visit [interactive documentation](http://146.190.178.107:5000/documentation)
