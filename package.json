@@ -1,54 +1,54 @@
 {
-    "name": "task-manager-api",
-    "description": "Simple task manager API",
-    "version": "1.0.0",
-    "type": "module",
-    "imports": {
-        "#root/*": "./dist/*"
-    },
-    "scripts": {
-        "build": "tsc",
-        "launch": "node dist/main.js",
-        "start": "run-s build launch",
-        "format": "prettier --write src/**/*.ts",
-        "test": "vitest run",
-        "test-components": "vitest run --dir ./src/components",
-        "launch-migrate": "pnpm drizzle-kit generate:mysql",
-        "migrate": "run-s build launch-migrate"
-    },
-    "dependencies": {
-        "@fastify/rate-limit": "^8.0.3",
-        "@fastify/swagger": "^8.8.0",
-        "@fastify/swagger-ui": "^1.9.2",
-        "@fastify/type-provider-typebox": "^3.3.0",
-        "@paralleldrive/cuid2": "^2.2.1",
-        "@sinclair/typebox": "^0.29.6",
-        "ajv": "^8.12.0",
-        "ajv-formats": "^2.1.1",
-        "bcryptjs": "^2.4.3",
-        "bullmq": "^4.6.0",
-        "close-with-grace": "^1.2.0",
-        "drizzle-orm": "^0.27.2",
-        "fastify": "^4.20.0",
-        "fastify-plugin": "^4.5.1",
-        "fastify-qs": "^4.0.2",
-        "jsonwebtoken": "^9.0.1",
-        "mysql2": "^3.5.2",
-        "nodemailer": "^6.9.4",
-        "pino": "^8.14.1",
-        "pino-pretty": "^10.1.0",
-        "yaml": "^2.3.1"
-    },
-    "devDependencies": {
-        "@faker-js/faker": "^8.0.2",
-        "@types/bcryptjs": "^2.4.2",
-        "@types/jsonwebtoken": "^9.0.2",
-        "@types/node": "^20.4.4",
-        "@types/nodemailer": "^6.4.8",
-        "drizzle-kit": "^0.19.10",
-        "npm-run-all": "^4.1.5",
-        "prettier": "^3.0.0",
-        "typescript": "^5.1.6",
-        "vitest": "^0.33.0"
-    }
+	"name": "task-manager-api",
+	"description": "Simple task manager API",
+	"version": "1.0.0",
+	"type": "module",
+	"imports": {
+		"#root/*": "./dist/*"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsx src/main.ts",
+		"test": "vitest run",
+		"launch-migrate": "pnpm drizzle-kit generate:mysql",
+		"migrate": "run-s build launch-migrate"
+	},
+	"dependencies": {
+		"@fastify/rate-limit": "^9.1.0",
+		"@fastify/swagger": "^8.14.0",
+		"@fastify/swagger-ui": "^2.1.0",
+		"@fastify/type-provider-typebox": "^4.0.0",
+		"@paralleldrive/cuid2": "^2.2.2",
+		"@sinclair/typebox": "^0.32.13",
+		"ajv": "^8.12.0",
+		"ajv-formats": "^2.1.1",
+		"bcryptjs": "^2.4.3",
+		"bullmq": "^5.1.9",
+		"close-with-grace": "^1.2.0",
+		"config": "^3.3.11",
+		"drizzle-orm": "^0.29.3",
+		"fastify": "^4.26.0",
+		"fastify-plugin": "^4.5.1",
+		"fastify-qs": "^4.0.2",
+		"jsonwebtoken": "^9.0.2",
+		"mysql2": "^3.9.1",
+		"nodemailer": "^6.9.9",
+		"pino": "^8.18.0",
+		"pino-pretty": "^10.3.1",
+		"yaml": "^2.3.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.5.3",
+		"@faker-js/faker": "^8.4.0",
+		"@types/bcryptjs": "^2.4.6",
+		"@types/config": "^3.3.3",
+		"@types/jsonwebtoken": "^9.0.5",
+		"@types/node": "^20.11.16",
+		"@types/nodemailer": "^6.4.14",
+		"drizzle-kit": "^0.20.14",
+		"npm-run-all": "^4.1.5",
+		"tsx": "^4.7.0",
+		"typescript": "^5.3.3",
+		"vitest": "^1.2.2"
+	}
 }

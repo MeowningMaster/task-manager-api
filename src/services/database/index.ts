@@ -33,7 +33,7 @@ export const Database = ioc.add([Config, Logger], async (config, log) => {
     await waitForConnection()
 
     const pool = mysql.createPool(config.database)
-    const db = drizzle(pool, { schema })
+    const db = drizzle(pool, { schema, mode: 'default' })
     await migrate(db, { migrationsFolder: './migrations' })
     return db
 })

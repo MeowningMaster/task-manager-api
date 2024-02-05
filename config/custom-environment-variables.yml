@@ -1,0 +1,8 @@
+externalUrl: EXTERNAL_URL
+
+jwt:
+  secret: JWT_SECRET
+
+database:
+  user: DB_USER
+  password: DB_PASSWORD

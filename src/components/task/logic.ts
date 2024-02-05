@@ -15,6 +15,7 @@ export const Logic = ioc.add([Database, Notifier], (db, notifier) => {
                 .from(task)
                 .limit(options.limit)
                 .offset(options.offset ?? 0)
+								.$dynamic()
             const conditions: SQL<unknown>[] = [eq(task.userId, userId)]
             if (options.filter) {
                 conditions.push(...adaptConditions(task, options.filter))

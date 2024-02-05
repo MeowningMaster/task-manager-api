@@ -1,5 +1,5 @@
 import { Static, TSchema } from '@sinclair/typebox'
-import { FastifySchema, InjectOptions } from 'fastify'
+import { FastifySchema } from 'fastify'
 
 export interface RouteSchema extends FastifySchema {
     body?: TSchema
@@ -15,7 +15,7 @@ export type StaticRoute<T extends RouteSchema> = {
     body: StaticOptional<T['body']>
     querystring: StaticOptional<T['querystring']>
     params: StaticOptional<T['params']>
-    response: T['response'] extends object
+    response: T['response'] extends Record<string, TSchema>
         ? { [Key in keyof T['response']]: Static<T['response'][Key]> }
         : undefined
 }

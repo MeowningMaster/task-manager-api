@@ -1,18 +1,24 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/dist/main.js",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "internalConsoleOptions": "openOnSessionStart",
-            "outputCapture": "std",
-            "preLaunchTask": "build",
-            "sourceMaps": true
-        }
-    ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"request": "launch",
+			"type": "node",
+			"name": "Debug",
+			"program": "${workspaceFolder}/src/main.ts",
+			"runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx",
+			"console": "internalConsole",
+			"internalConsoleOptions": "openOnSessionStart",
+			"skipFiles": [
+				"<node_internals>/**",
+				"${workspaceFolder}/node_modules/**"
+			],
+			"outputCapture": "std",
+			"sourceMaps": true,
+			"resolveSourceMapLocations": [
+				"${workspaceFolder}/dist/**",
+				"!**/node_modules/**"
+			]
+		}
+	]
 }
