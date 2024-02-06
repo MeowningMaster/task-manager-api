@@ -1,4 +1,5 @@
 import { Type } from "@sinclair/typebox"
+import { t } from "elysia"
 
 const Jwt = Type.Object({
 	secret: Type.String(),
@@ -10,7 +11,7 @@ const Log = Type.Object({
 	file: Type.Optional(Type.String()),
 })
 
-const Port = Type.Integer({ minimum: 1, maximum: 65535 })
+const Port = t.Numeric()
 
 const Database = Type.Object({
 	host: Type.String(),
