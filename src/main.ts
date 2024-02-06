@@ -1,16 +1,5 @@
-import config from "config"
+import { cradle } from "./ioc"
 
-console.log(config)
-
-process.exit(0)
-
-import { ioc } from "./ioc/index.js"
-import { Server } from "./server/index.js"
-import gracefulShutdown from "close-with-grace"
-
-const server = await ioc.resolve(Server)
-await server.listen()
-
-gracefulShutdown({ delay: 1000 }, async () => {
-	await server.instance.close()
-})
+const { server, databaseInit } = cradle
+await databaseInit
+server.listen()

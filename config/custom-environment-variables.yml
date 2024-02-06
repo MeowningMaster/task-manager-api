@@ -1,3 +1,5 @@
+# https://github.com/node-config/node-config/wiki/Environment-Variables
+
 externalUrl: EXTERNAL_URL
 
 jwt:

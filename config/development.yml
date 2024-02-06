@@ -1,0 +1,6 @@
+jwt:
+  secret: E/=_r+a]H'8wHG](99"9'^X?K~+U\#]Gmged
+
+database:
+  user: admin
+  password: password

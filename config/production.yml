@@ -1,12 +1,14 @@
 # for production docker
 
+# sensitive data like secrets and credentials
+# should be set as environment variables
+# or local.yml file
+
 expose: true
 
 database:
   host: db
-  port: 3306
   database: main
 
 redis:
   host: redis
-  port: 6379

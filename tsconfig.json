@@ -1,27 +1,35 @@
 /* https://aka.ms/tsconfig.json */
 {
-    "include": [
-        "src"
-    ],
-    "compilerOptions": {
-        "target": "ES2022",
-        "module": "Node16",
-        "sourceMap": true,
-        "outDir": "./dist",
-        "strict": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "isolatedModules": true,
-        "incremental": true,
-        "tsBuildInfoFile": "./dist/tsbuildinfo",
-        "baseUrl": "src",
-        "paths": {
-            "#root/*": [
-                "./*"
-            ],
-        },
-    },
+	"include": [
+		"src"
+	],
+	"compilerOptions": {
+		"lib": [
+			"ESNext"
+		],
+		"module": "esnext",
+		"target": "esnext",
+		"moduleResolution": "bundler",
+		"moduleDetection": "force",
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"strict": true,
+		"downlevelIteration": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"allowJs": true,
+		"isolatedModules": true,
+		"paths": {
+			"#root/*": [
+				"./*"
+			],
+			"#src/*": [
+				"./src/*"
+			],
+			"#db/*": [
+				"./src/services/database/*"
+			]
+		},
+	},
 }

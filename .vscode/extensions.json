@@ -1,8 +1,9 @@
 {
-    "recommendations": [
-        "EditorConfig.EditorConfig",
-        "biomejs.biome",
-        "redhat.vscode-yaml",
-        "ZixuanChen.vitest-explorer"
-    ]
+	"recommendations": [
+		"EditorConfig.EditorConfig",
+		"biomejs.biome",
+		"redhat.vscode-yaml",
+		"ms-azuretools.vscode-docker",
+		"oven.bun-vscode"
+	]
 }

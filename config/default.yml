@@ -6,7 +6,6 @@ trustProxy: false
 expose: false
 
 jwt:
-  secret: E/=_r+a]H'8wHG](99"9'^X?K~+U\#]Gmged
   expiresIn: 1d
 
 log:
@@ -15,7 +14,7 @@ log:
 
 database:
   host: localhost
-  port: 4306
+  port: 3306
   database: main
   user: admin
   password: password
@@ -29,4 +28,4 @@ mailer:
 
 redis:
   host: localhost
-  port: 7379
+  port: 6379

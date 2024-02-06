@@ -1,54 +1,43 @@
 {
 	"name": "task-manager-api",
 	"description": "Simple task manager API",
-	"version": "1.0.0",
+	"version": "2.0.0",
+	"private": true,
 	"type": "module",
-	"imports": {
-		"#root/*": "./dist/*"
-	},
 	"scripts": {
-		"build": "tsc",
-		"dev": "tsx src/main.ts",
-		"test": "vitest run",
-		"launch-migrate": "pnpm drizzle-kit generate:mysql",
-		"migrate": "run-s build launch-migrate"
+		"dev": "bun run src/main.ts",
+		"launch-migrate": "drizzle-kit generate:mysql",
+		"wire": "bun run scripts/autowire.ts src"
 	},
 	"dependencies": {
-		"@fastify/rate-limit": "^9.1.0",
-		"@fastify/swagger": "^8.14.0",
-		"@fastify/swagger-ui": "^2.1.0",
-		"@fastify/type-provider-typebox": "^4.0.0",
+		"@bogeychan/elysia-logger": "^0.0.16",
+		"@elysiajs/swagger": "^0.8.5",
 		"@paralleldrive/cuid2": "^2.2.2",
-		"@sinclair/typebox": "^0.32.13",
-		"ajv": "^8.12.0",
-		"ajv-formats": "^2.1.1",
+		"awilix": "^10.0.1",
 		"bcryptjs": "^2.4.3",
 		"bullmq": "^5.1.9",
-		"close-with-grace": "^1.2.0",
 		"config": "^3.3.11",
 		"drizzle-orm": "^0.29.3",
-		"fastify": "^4.26.0",
-		"fastify-plugin": "^4.5.1",
-		"fastify-qs": "^4.0.2",
+		"elysia": "^0.8.15",
+		"elysia-ip": "^0.0.7",
+		"elysia-rate-limit": "^2.0.1",
 		"jsonwebtoken": "^9.0.2",
 		"mysql2": "^3.9.1",
 		"nodemailer": "^6.9.9",
-		"pino": "^8.18.0",
-		"pino-pretty": "^10.3.1",
-		"yaml": "^2.3.4"
+		"pino-pretty": "^10.3.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.5.3",
 		"@faker-js/faker": "^8.4.0",
 		"@types/bcryptjs": "^2.4.6",
+		"@types/bun": "latest",
 		"@types/config": "^3.3.3",
 		"@types/jsonwebtoken": "^9.0.5",
-		"@types/node": "^20.11.16",
 		"@types/nodemailer": "^6.4.14",
+		"chokidar": "^3.5.3",
+		"commander": "^12.0.0",
 		"drizzle-kit": "^0.20.14",
-		"npm-run-all": "^4.1.5",
-		"tsx": "^4.7.0",
-		"typescript": "^5.3.3",
-		"vitest": "^1.2.2"
+		"npm-check-updates": "^16.14.14",
+		"typescript": "^5.3.3"
 	}
 }
