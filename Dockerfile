@@ -1,21 +1,27 @@
-# Stage 1
-FROM node:20.5.0-alpine AS builder
-RUN npm install -g pnpm
-WORKDIR /app
-COPY package.json pnpm-lock.yaml tsconfig.json ./
-RUN pnpm install --frozen-lockfile
-COPY ./src ./src
-RUN pnpm build
+FROM oven/bun:1 as base
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
 
-# Stage 2
-FROM node:20.5.0-alpine
-RUN npm install -g pnpm
-WORKDIR /app
-COPY --from=builder /app/dist ./dist
-COPY package.json pnpm-lock.yaml ./
-COPY config.docker.yaml ./config.yaml
-COPY ./migrations ./migrations
-RUN pnpm install --frozen-lockfile --prod
+# install dependencies into temp directory
+# this will cache them and speed up future builds
+FROM base AS install
+RUN mkdir -p /temp/prod
+COPY package.json bun.lockb /temp/prod/
+RUN cd /temp/prod && bun install --frozen-lockfile --production
 
-EXPOSE 5000
-CMD ["node", "./dist/main.js"]
+FROM base AS prerelease
+COPY --from=install /temp/prod/node_modules node_modules
+COPY . .
+# RUN bun test
+RUN bun run build
+
+FROM base AS release
+COPY --from=install /temp/prod/node_modules node_modules
+COPY --from=prerelease /usr/src/app/dist/main.js .
+COPY --from=prerelease /usr/src/app/package.json .
+COPY --from=prerelease /usr/src/app/config config
+COPY --from=prerelease /usr/src/app/migrations migrations
+RUN chown bun .
+USER bun
+EXPOSE 5000/tcp
+ENTRYPOINT [ "bun", "run", "main.js" ]
