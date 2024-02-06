@@ -32,11 +32,11 @@ const Mailer = Type.Object({
 
 const Redis = Type.Object({
 	host: Type.String(),
-	port: Type.Number(),
+	port: Port,
 })
 
 export const Config = Type.Object({
-	port: Type.Integer({ minimum: 1, maximum: 65535 }),
+	port: Port,
 	externalUrl: Type.String(),
 	trustProxy: Type.Boolean(),
 	expose: Type.Boolean(),
