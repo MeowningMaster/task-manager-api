@@ -1,11 +1,13 @@
-import { TSchema, Type } from "@sinclair/typebox"
+import { TSchema, Type, TUnsafe } from "@sinclair/typebox"
 
 function Nullable<T extends TSchema>(schema: T) {
 	return Type.Union([Type.Null(), schema])
 }
 
-function StringEnum<T extends readonly string[]>(values: readonly [...T]) {
-	return Type.Unsafe<T[number]>({ type: "string", enum: values })
+function StringEnum<T extends readonly string[]>(
+	values: readonly [...T],
+): TUnsafe<T[number]> {
+	return Type.String({ enum: values })
 }
 
 /** [docs](https://swagger.io/docs/specification/serialization) */

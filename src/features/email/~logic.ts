@@ -6,7 +6,7 @@ import { Ioc } from "#root/src/ioc/index.js"
 
 export default function emailLogic({ database: db, config, mailer }: Ioc) {
 	return {
-		async get(userId: number): Promise<typeof email.$inferSelect | undefined> {
+		async get(userId: number): Promise<typeof email.$inferSelect | null> {
 			const [record] = await db
 				.select()
 				.from(email)

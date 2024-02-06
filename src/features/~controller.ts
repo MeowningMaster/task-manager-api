@@ -1,12 +1,23 @@
 import { Elysia } from "elysia"
 import { Ioc } from "../ioc"
 
-export default function featuresController({ userController }: Ioc) {
-	const controllers: Record<string, Elysia> = { "/user": userController }
+export default function featuresController({
+	userController,
+	taskController,
+	emailController,
+}: Ioc) {
+	const controllers: Record<string, Elysia> = {
+		"/user": userController,
+		"/task": taskController,
+		"/email": emailController,
+	}
+
 	const plugin = new Elysia()
 	for (const path in controllers) {
 		const controller = controllers[path]
-		plugin.group(path, (app) => app.use(controller))
+		plugin.group(path, { detail: { tags: [path.slice(1)] } }, (app) =>
+			app.use(controller),
+		)
 	}
 	return plugin
 }

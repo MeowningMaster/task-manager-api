@@ -33,7 +33,7 @@ export default function taskLogic({ database: db, notifier }: Ioc) {
 		async get(
 			userId: number,
 			taskId: number,
-		): Promise<typeof task.$inferSelect | undefined> {
+		): Promise<typeof task.$inferSelect | null> {
 			const [record] = await db
 				.select()
 				.from(task)

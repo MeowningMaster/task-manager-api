@@ -56,7 +56,7 @@ export type List = UnwrapRoute<typeof List>
 export const List = {
 	// description: "Get an array of tasks with pagination, filtration and sorting",
 	query: tApi.Deep(
-		t.Intersect([
+		t.Composite([
 			Pagination,
 			t.Object({
 				filter: t.Optional(ConditionsAdapter(Filter)),
@@ -75,9 +75,7 @@ export const Get = {
 	params: t.Object({
 		id: t.Integer({ minimum: 0 }),
 	}),
-	response: {
-		200: Task,
-	},
+	response: t.Nullable(Task),
 } satisfies RouteSchema
 
 export type Post = UnwrapRoute<typeof Post>

@@ -1,11 +1,9 @@
 import { Login, Register } from "./schema.js"
 import { Elysia } from "elysia"
-import { guardTags } from "#root/src/server/plugins/documentation/guard.js"
 import { Ioc } from "#root/src/ioc/index.js"
 
 export default function userController({ userLogic, jwtValidator }: Ioc) {
 	return new Elysia()
-		.use(guardTags("user"))
 		.post("/register", ({ body }) => userLogic.register(body), {
 			...Register,
 			detail: { description: "Register a new user" },
