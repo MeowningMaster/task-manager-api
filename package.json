@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "bun run src/main.ts",
 		"launch-migrate": "drizzle-kit generate:mysql",
-		"wire": "bun run scripts/autowire.ts src"
+		"wire": "bun run scripts/wire.ts src {@}"
 	},
 	"dependencies": {
 		"@bogeychan/elysia-logger": "^0.0.16",

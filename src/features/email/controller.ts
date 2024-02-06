@@ -1,5 +1,5 @@
 import { Confirm, Get, Put } from "./schema.js"
-import { JwtValidator } from "../../server/plugins/jwt-validator.js"
+import { JwtValidator } from "../../server/plugins/~jwt-validator.js"
 import { Elysia } from "elysia"
 import { guardTags } from "#root/src/server/plugins/documentation/guard.js"
 

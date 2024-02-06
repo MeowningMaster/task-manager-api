@@ -13,6 +13,7 @@ program
 			"<watch-dir>/_module.ts",
 		),
 	)
+	.addOption(new Option("-w, --watch", "Watch mode").default(false))
 
 program.parse()
 
@@ -22,6 +23,7 @@ const options = program.opts()
 const watchDir = args[0] ?? process.cwd()
 const outFile = options.outFile ?? join(watchDir, "_module.ts")
 const baseDir = dirname(outFile)
+const watch = options.watch
 
 let initial = true
 
@@ -34,6 +36,9 @@ chokidar
 	.on("ready", async () => {
 		initial = false
 		await recreateOutput()
+		if (!watch) {
+			process.exit(0)
+		}
 	})
 
 type Event = "add" | "change" | "unlink"
