@@ -3,10 +3,10 @@ import { Elysia } from "elysia"
 import { guardTags } from "#root/src/server/plugins/documentation/guard.js"
 import { Ioc } from "#root/src/ioc/index.js"
 
-export default function userController({ userLogic }: Ioc) {
+export default function userController({ userLogic, jwtValidator }: Ioc) {
 	return new Elysia()
 		.use(guardTags("user"))
-		.post("/register", async ({ body }) => await userLogic.register(body), {
+		.post("/register", ({ body }) => userLogic.register(body), {
 			...Register,
 			detail: { description: "Register a new user" },
 		})
@@ -18,21 +18,15 @@ export default function userController({ userLogic }: Ioc) {
 					"Get a JWT token for temporary access. The token should be used as a bearer auth",
 			},
 		})
+		.group("", (app) =>
+			app.use(jwtValidator).delete(
+				"",
+				async ({ jwt }) => {
+					await userLogic.delete(jwt.id)
+				},
+				{
+					detail: { description: "Delete current user" },
+				},
+			),
+		)
 }
-
-// export const Controller = ioc.add(
-// 	[Logic, JwtValidator],
-// 	(logic, jwtValidator): FastifyPluginAsyncTypebox =>
-// 			await server.register(async (server) => {
-// 				await server.register(jwtValidator)
-
-// 				server.delete(
-// 					"/",
-// 					{ schema: { description: "Delete the current user" } },
-// 					async (request) => {
-// 						await logic.delete(request.jwt.id)
-// 					},
-// 				)
-// 			})
-// 		},
-// )

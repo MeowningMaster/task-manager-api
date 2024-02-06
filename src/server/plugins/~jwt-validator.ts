@@ -8,16 +8,15 @@ import { Ioc } from "#root/src/ioc/index.js"
 export const tokenHeader = "authorization" as const
 const bearerPrefix = "Bearer " as const
 
-export function jwtValidator({ config }: Ioc) {
+export default function jwtValidator({ config }: Ioc) {
 	return new Elysia()
 		.guard({
 			detail: {
 				security: [{ [tokenSecuritySchema]: [] }],
 			},
 		})
-		.state("jwt", null as JwtPayload | null)
-		.onRequest(({ request, store }) => {
-			const header = request.headers.get(tokenHeader)
+		.derive(({ headers }) => {
+			const header = headers[tokenHeader]
 			if (!header) {
 				throw new ServerError("No Authorization header", { code: 401 })
 			}
@@ -33,7 +32,9 @@ export function jwtValidator({ config }: Ioc) {
 
 			try {
 				const payload = jwt.verify(token, config.jwt.secret)
-				store.jwt = payload as JwtPayload
+				return {
+					jwt: payload as JwtPayload,
+				}
 			} catch (error) {
 				if (error instanceof Error) {
 					throw new ServerError(error.message, {
