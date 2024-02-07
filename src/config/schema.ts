@@ -33,6 +33,12 @@ const Mailer = Type.Object({
 const Redis = Type.Object({
 	host: Type.String(),
 	port: Port,
+	auth: Type.Optional(
+		Type.Object({
+			user: Type.String(),
+			pass: Type.String(),
+		}),
+	),
 })
 
 export const Config = Type.Object({

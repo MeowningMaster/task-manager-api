@@ -21,6 +21,11 @@ export default function notifier(ioc: Ioc) {
 	const { config, mailer, emailLogic } = ioc
 	const connection: ConnectionOptions = config.redis
 
+	if (config.redis.auth) {
+		connection.username = config.redis.auth.user
+		connection.password = config.redis.auth.pass
+	}
+
 	const queue = new Queue<JobData>(queueName, {
 		connection,
 	})
