@@ -1,7 +1,5 @@
 import { cradle } from "./ioc"
 
-const { server, databaseInit, config } = cradle
+const { server, databaseInit } = cradle
 await databaseInit
 server.listen()
-
-console.info(config)

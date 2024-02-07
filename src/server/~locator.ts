@@ -13,6 +13,6 @@ export default function rootLocator({ config, log }: Ioc) {
 			// 			: [],
 			// 	}),
 			// )
-			.use(log.into({ autoLogging: true }))
+			.use(log.into({ autoLogging: false }))
 	)
 }
