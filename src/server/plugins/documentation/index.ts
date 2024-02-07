@@ -1,4 +1,4 @@
-import swagger from "@elysiajs/swagger"
+import { swagger } from "@elysiajs/swagger"
 import { cradle } from "#root/src/ioc/index.js"
 import { apiTags } from "./tags"
 
