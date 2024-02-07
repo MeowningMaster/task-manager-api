@@ -1,5 +1,6 @@
 # https://github.com/node-config/node-config/wiki/Environment-Variables
 
+port: PORT
 externalUrl: EXTERNAL_URL
 
 jwt:
