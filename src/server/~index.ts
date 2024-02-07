@@ -1,7 +1,7 @@
 import { Elysia } from "elysia"
 import { Ioc } from "../ioc/index.js"
-import { swagger } from "@elysiajs/swagger"
 import { rateLimit } from "elysia-rate-limit"
+import { documentationPlugin } from "./plugins/documentation/index.js"
 
 export default function server({
 	log,
@@ -10,8 +10,8 @@ export default function server({
 	featuresController,
 }: Ioc) {
 	const server = new Elysia()
+		.use(documentationPlugin({ path: "/docs" }))
 		.use(rootLocator)
-		.use(swagger({ path: "/docs" }))
 		// .use(
 		// 	rateLimit({
 		// 		duration: 60_000, // 1 minute

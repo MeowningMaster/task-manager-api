@@ -4,7 +4,9 @@ import { apiTags } from "./tags"
 
 export const tokenSecuritySchema = "tokenAuth"
 
-export function documentationPlugin(path: string) {
+export function documentationPlugin({
+	path = "/docs",
+}: { path?: string } = {}) {
 	const { config } = cradle
 	return swagger({
 		path,
