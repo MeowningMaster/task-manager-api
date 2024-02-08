@@ -2,7 +2,10 @@
 Claimr technical assignment. [Task description](./articles/task-description.md)
 
 ## Hosted API
-API is hosted on Digital Ocean. Visit [interactive documentation](http://146.190.178.107:5000/documentation)
+API is hosted on Railway. Visit [interactive documentation](https://task-manager-api-production.up.railway.app/docs)
+
+> [!WARNING]
+> Later description is outdated. There is bun, elysia, new IOC and configs, tests are broken
 
 ## How to run
 1. Clone this repository
@@ -13,6 +16,7 @@ API is hosted on Digital Ocean. Visit [interactive documentation](http://146.190
 6. Done! Visit [documentation](http://localhost:5000/documentation)
 
 ## Technical overview
+
 - REST server via [Fastify](https://fastify.dev/)
   - validation and documentation from one source via [typebox](https://github.com/sinclairzx81/typebox)
   - JWT authentification
