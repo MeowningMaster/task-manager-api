@@ -1,12 +1,12 @@
 import {
+	datetime,
+	index,
+	int,
+	mysqlEnum,
 	mysqlTable,
 	serial,
-	varchar,
-	int,
 	text,
-	mysqlEnum,
-	index,
-	datetime,
+	varchar,
 } from "drizzle-orm/mysql-core"
 import { user } from "./user.js"
 

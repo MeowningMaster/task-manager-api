@@ -1,7 +1,7 @@
-import { Static } from "@sinclair/typebox"
-import { ConditionsAdapter } from "#src/validator/conditions-adapter.js"
+import type { Static } from "@sinclair/typebox"
+import { type RouteSchema, type UnwrapRoute, t } from "elysia"
 import { tApi } from "#root/src/validator/open-api"
-import { RouteSchema, UnwrapRoute, t } from "elysia"
+import { ConditionsAdapter } from "#src/validator/conditions-adapter.js"
 
 export const statuses = ["pending", "in-progress", "completed"] as const
 const Status = tApi.StringEnum(statuses)

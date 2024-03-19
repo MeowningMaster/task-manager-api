@@ -1,5 +1,5 @@
-import { Static } from "@sinclair/typebox"
-import { RouteSchema, UnwrapRoute, t } from "elysia"
+import type { Static } from "@sinclair/typebox"
+import { type RouteSchema, type UnwrapRoute, t } from "elysia"
 
 export type Credentials = Static<typeof Credentials>
 export const Credentials = t.Object({

@@ -1,7 +1,7 @@
 import { default as configLib } from "config"
 import packageJson from "#root/package.json"
-import * as schema from "./schema"
 import { validateOrThrow } from "#src/validator"
+import * as schema from "./schema"
 
 export default function config() {
 	const config = validateOrThrow(
@@ -28,5 +28,5 @@ export default function config() {
 
 function toInt(value: string | number) {
 	if (typeof value === "number") return value
-	return parseInt(value)
+	return Number.parseInt(value)
 }

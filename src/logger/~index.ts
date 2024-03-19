@@ -1,9 +1,9 @@
-import { createPinoLogger } from "@bogeychan/elysia-logger"
-import type { TransportTargetOptions } from "pino"
 import fs from "node:fs"
 import path from "node:path"
+import { createPinoLogger } from "@bogeychan/elysia-logger"
+import type { TransportTargetOptions } from "pino"
 import type { PrettyOptions } from "pino-pretty"
-import { Ioc } from "../ioc"
+import type { Ioc } from "../ioc"
 
 function createDirs(to: string) {
 	const dir = path.dirname(to)

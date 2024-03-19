@@ -1,8 +1,8 @@
 import { and, eq } from "drizzle-orm"
 import jwt from "jsonwebtoken"
-import { JwtPayload } from "./schema.js"
 import { email } from "#db/schema/email.js"
-import { Ioc } from "#root/src/ioc/index.js"
+import type { Ioc } from "#root/src/ioc/index.js"
+import type { JwtPayload } from "./schema.js"
 
 export default function emailLogic({ database: db, config, mailer }: Ioc) {
 	return {

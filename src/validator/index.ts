@@ -1,5 +1,5 @@
+import type { Static, TAnySchema } from "@sinclair/typebox"
 import { TypeCompiler } from "@sinclair/typebox/compiler"
-import type { TAnySchema, Static } from "@sinclair/typebox"
 
 export function validate<Schema extends TAnySchema>(
 	data: unknown,

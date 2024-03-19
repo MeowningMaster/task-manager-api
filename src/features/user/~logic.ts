@@ -1,10 +1,10 @@
-import { eq } from "drizzle-orm"
-import { JwtPayload, Credentials } from "./schema.js"
 import bcrypt from "bcryptjs"
+import { eq } from "drizzle-orm"
 import jwt from "jsonwebtoken"
-import { user } from "#src/services/database/schema/user.js"
-import { Ioc } from "#root/src/ioc/index.js"
 import { ServerError } from "#root/src/error/server-error.js"
+import type { Ioc } from "#root/src/ioc/index.js"
+import { user } from "#src/services/database/schema/user.js"
+import type { Credentials, JwtPayload } from "./schema.js"
 
 export default function userLogic({ database: db, config }: Ioc) {
 	return {

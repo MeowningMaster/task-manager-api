@@ -1,5 +1,5 @@
 import { Elysia } from "elysia"
-import { Ioc } from "../ioc"
+import type { Ioc } from "../ioc"
 
 export default function featuresController({
 	userController,

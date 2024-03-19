@@ -1,4 +1,4 @@
-import { TSchema, Type, TUnsafe } from "@sinclair/typebox"
+import { type TSchema, type TUnsafe, Type } from "@sinclair/typebox"
 
 function Nullable<T extends TSchema>(schema: T) {
 	return Type.Union([Type.Null(), schema])

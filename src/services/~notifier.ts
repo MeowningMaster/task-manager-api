@@ -1,5 +1,5 @@
-import { ConnectionOptions, Queue, Worker } from "bullmq"
-import { Ioc, cradle } from "../ioc/index.js"
+import { type ConnectionOptions, Queue, Worker } from "bullmq"
+import { type Ioc, cradle } from "../ioc/index.js"
 
 const queueName = "notifications"
 

@@ -1,9 +1,9 @@
 import {
-	Static,
-	TObject,
-	TPartial,
-	TProperties,
-	TSchema,
+	type Static,
+	type TObject,
+	type TPartial,
+	type TProperties,
+	type TSchema,
 	Type,
 } from "@sinclair/typebox"
 

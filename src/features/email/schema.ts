@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox"
-import { RouteSchema, t } from "elysia"
+import { type RouteSchema, t } from "elysia"
 
 export const Get = {
 	// description: "Get the current user's email address",

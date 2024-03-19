@@ -1,6 +1,6 @@
-import { Task } from "#root/src/features/task/schema"
 import nodemailer from "nodemailer"
-import { Ioc } from "../ioc"
+import type { Task } from "#root/src/features/task/schema"
+import type { Ioc } from "../ioc"
 
 export default function mailer({ config }: Ioc) {
 	const mailer = nodemailer.createTransport(config.mailer)

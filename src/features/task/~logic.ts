@@ -1,9 +1,9 @@
-import { SQL, and, asc, desc, eq } from "drizzle-orm"
-import { List, Post, Put, Sort } from "./schema.js"
+import { type SQL, and, asc, desc, eq } from "drizzle-orm"
 import { ServerError } from "#src/error/server-error.js"
-import { task } from "#src/services/database/schema/task.js"
+import type { Ioc } from "#src/ioc/index.js"
 import { adaptConditions } from "#src/services/database/adapt-conditions.js"
-import { Ioc } from "#src/ioc/index.js"
+import { task } from "#src/services/database/schema/task.js"
+import type { List, Post, Put, Sort } from "./schema.js"
 
 export default function taskLogic({ database: db, notifier }: Ioc) {
 	return {

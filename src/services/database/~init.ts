@@ -1,9 +1,9 @@
-import mysql from "mysql2/promise"
 import { drizzle } from "drizzle-orm/mysql2"
 import { migrate } from "drizzle-orm/mysql2/migrator"
-import * as schema from "./schema/index.js"
+import mysql from "mysql2/promise"
+import type { Ioc } from "#root/src/ioc/index.js"
 import { delay } from "#src/utilities/delay.js"
-import { Ioc } from "#root/src/ioc/index.js"
+import * as schema from "./schema/index.js"
 
 export default async function databaseInit({ config, log }: Ioc) {
 	async function waitForConnection(maxRetries = 20, retryIntervalMs = 3000) {

@@ -1,5 +1,5 @@
 import rootModule from "../_module"
-import { Container, ResolveModule } from "./lib"
+import { Container, type ResolveModule } from "./lib"
 
 export type Ioc = ResolveModule<typeof rootModule>
 

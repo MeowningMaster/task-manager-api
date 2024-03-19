@@ -1,6 +1,6 @@
-import { Delete, Get, List, Post, Put } from "./schema.js"
 import { Elysia } from "elysia"
-import { Ioc } from "#root/src/ioc/index.js"
+import type { Ioc } from "#root/src/ioc/index.js"
+import { Delete, Get, List, Post, Put } from "./schema.js"
 
 export default function taskController({ taskLogic, jwtValidator }: Ioc) {
 	return new Elysia()

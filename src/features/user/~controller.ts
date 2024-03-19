@@ -1,6 +1,6 @@
-import { Login, Register } from "./schema.js"
 import { Elysia } from "elysia"
-import { Ioc } from "#root/src/ioc/index.js"
+import type { Ioc } from "#root/src/ioc/index.js"
+import { Login, Register } from "./schema.js"
 
 export default function userController({ userLogic, jwtValidator }: Ioc) {
 	return new Elysia()

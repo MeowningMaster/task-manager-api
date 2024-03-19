@@ -1,4 +1,4 @@
-import { createContainer, asFunction, type AwilixContainer } from "awilix"
+import { type AwilixContainer, asFunction, createContainer } from "awilix"
 
 // biome-ignore lint/suspicious/noExplicitAny: permissive type
 export type Component<R = any> = (...params: any[]) => R

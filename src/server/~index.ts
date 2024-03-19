@@ -1,6 +1,6 @@
 import { Elysia } from "elysia"
-import { Ioc } from "../ioc/index.js"
 import { rateLimit } from "elysia-rate-limit"
+import type { Ioc } from "../ioc/index.js"
 import { documentationPlugin } from "./plugins/documentation/index.js"
 
 export default function server({

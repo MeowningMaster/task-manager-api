@@ -1,6 +1,6 @@
-import { Confirm, Get, Put } from "./schema.js"
 import { Elysia } from "elysia"
-import { Ioc } from "#root/src/ioc/index.js"
+import type { Ioc } from "#root/src/ioc/index.js"
+import { Confirm, Get, Put } from "./schema.js"
 
 export default function emailController({ jwtValidator, emailLogic }: Ioc) {
 	return new Elysia()

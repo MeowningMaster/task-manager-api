@@ -1,6 +1,6 @@
 import { Elysia } from "elysia"
 // import { ip } from "elysia-ip"
-import { Ioc } from "../ioc"
+import type { Ioc } from "../ioc"
 
 export default function rootLocator({ config, log }: Ioc) {
 	return (

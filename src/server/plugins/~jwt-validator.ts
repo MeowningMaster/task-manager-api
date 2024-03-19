@@ -1,9 +1,9 @@
+import { Elysia } from "elysia"
+import jwt from "jsonwebtoken"
+import type { Ioc } from "#root/src/ioc/index.js"
 import { ServerError } from "#src/error/server-error.js"
 import { tokenSecuritySchema } from "#src/server/plugins/documentation/index.js"
-import { Elysia } from "elysia"
-import { JwtPayload } from "../../features/user/schema.js"
-import jwt from "jsonwebtoken"
-import { Ioc } from "#root/src/ioc/index.js"
+import type { JwtPayload } from "../../features/user/schema.js"
 
 export const tokenHeader = "authorization" as const
 const bearerPrefix = "Bearer " as const
