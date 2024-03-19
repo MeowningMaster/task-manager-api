@@ -1,45 +1,48 @@
 {
-	"name": "task-manager-api",
-	"description": "Simple task manager API",
-	"version": "2.0.0",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"dev": "bun run src/main.ts",
-		"launch-migrate": "drizzle-kit generate:mysql",
-		"wire": "bun run scripts/wire.ts src {@}",
-		"build": "bun build --target=node --outdir=dist src/main.ts"
-	},
-	"dependencies": {
-		"@bogeychan/elysia-logger": "^0.0.16",
-		"@elysiajs/swagger": "^0.8.5",
-		"@paralleldrive/cuid2": "^2.2.2",
-		"awilix": "^10.0.1",
-		"bcryptjs": "^2.4.3",
-		"bullmq": "^5.1.9",
-		"config": "^3.3.11",
-		"drizzle-orm": "^0.29.3",
-		"elysia": "^0.8.15",
-		"elysia-ip": "^0.0.7",
-		"elysia-rate-limit": "^2.0.1",
-		"js-yaml": "^4.1.0",
-		"jsonwebtoken": "^9.0.2",
-		"mysql2": "^3.9.1",
-		"nodemailer": "^6.9.9",
-		"pino-pretty": "^10.3.1"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.5.3",
-		"@faker-js/faker": "^8.4.0",
-		"@types/bcryptjs": "^2.4.6",
-		"@types/bun": "latest",
-		"@types/config": "^3.3.3",
-		"@types/jsonwebtoken": "^9.0.5",
-		"@types/nodemailer": "^6.4.14",
-		"chokidar": "^3.5.3",
-		"commander": "^12.0.0",
-		"drizzle-kit": "^0.20.14",
-		"npm-check-updates": "^16.14.14",
-		"typescript": "^5.3.3"
-	}
+  "name": "task-manager-api",
+  "description": "Simple task manager API",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run src/main.ts",
+    "launch-migrate": "drizzle-kit generate:mysql",
+    "wire": "bun run scripts/wire.ts src {@}",
+    "build": "bun build --target=node --outdir=dist src/main.ts"
+  },
+  "dependencies": {
+    "@bogeychan/elysia-logger": "^0.0.18",
+    "@elysiajs/swagger": "^1.0.2",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "awilix": "^10.0.1",
+    "bcryptjs": "^2.4.3",
+    "bullmq": "^5.4.3",
+    "config": "^3.3.11",
+    "drizzle-orm": "^0.30.3",
+    "elysia": "^1.0.4",
+    "elysia-ip": "^0.0.7",
+    "elysia-rate-limit": "^3.0.0",
+    "js-yaml": "^4.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.2",
+    "nodemailer": "^6.9.12",
+    "pino-pretty": "^10.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.6.1",
+    "@faker-js/faker": "^8.4.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/bun": "latest",
+    "@types/config": "^3.3.3",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/nodemailer": "^6.4.14",
+    "chokidar": "^3.6.0",
+    "commander": "^12.0.0",
+    "drizzle-kit": "^0.20.14",
+    "npm-check-updates": "^16.14.17",
+    "typescript": "^5.4.2"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome"
+  ]
 }
