@@ -15,7 +15,7 @@ export default function jwtValidator({ config }: Ioc) {
 				security: [{ [tokenSecuritySchema]: [] }],
 			},
 		})
-		.derive(({ headers }) => {
+		.resolve({ as: "scoped" }, ({ headers }) => {
 			const header = headers[tokenHeader]
 			if (!header) {
 				throw new ServerError("No Authorization header", { code: 401 })
