@@ -15,7 +15,9 @@
 	"explorer.fileNesting.enabled": true,
 	"explorer.fileNesting.expand": false,
 	"explorer.fileNesting.patterns": {
-		"package.json": ".editorconfig, pnpm*, .pnpm*, biome.json, tsconfig.*, .git*, drizzle.config.ts, bun.lockb",
-		"*.ts": "$(capture).test.ts"
+		"package.json": "tsconfig.*, bun.lockb",
+		".editorconfig": ".git*, biome.json",
+		"*.ts": "$(capture).test.ts",
+		"Dockerfile": ".dockerignore, compose.yml"
 	}
 }
