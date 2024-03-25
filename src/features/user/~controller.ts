@@ -16,15 +16,14 @@ export default function userController({ userLogic, jwtValidator }: Ioc) {
 					"Get a JWT token for temporary access. The token should be used as a bearer auth",
 			},
 		})
-		.group("", (app) =>
-			app.use(jwtValidator).delete(
-				"",
-				async ({ jwt }) => {
-					await userLogic.delete(jwt.id)
-				},
-				{
-					detail: { description: "Delete current user" },
-				},
-			),
+		.use(jwtValidator)
+		.delete(
+			"",
+			async ({ jwt }) => {
+				await userLogic.delete(jwt.id)
+			},
+			{
+				detail: { description: "Delete current user" },
+			},
 		)
 }

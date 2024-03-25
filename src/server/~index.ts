@@ -10,7 +10,6 @@ export default function server({
 	featuresController,
 }: Ioc) {
 	const server = new Elysia()
-		.use(documentationPlugin({ path: "/docs" }))
 		.use(rootLocator)
 		// .use(
 		// 	rateLimit({
@@ -19,7 +18,9 @@ export default function server({
 		// 		responseCode: 429,
 		// 	}),
 		// )
-		.group("/v1", (app) => app.use(featuresController))
+		.group("/v1", (app) =>
+			app.use(documentationPlugin()).use(featuresController),
+		)
 
 	// await server.register(errorHandler)
 	// await server.register(fastifyQs.default)
@@ -35,8 +36,9 @@ export default function server({
 
 			log.info(
 				{
-					local: `http://${hostname}:${config.port}`,
-					external: config.externalUrl,
+					link: config.externalUrl,
+					hostname,
+					port: config.port,
 				},
 				"Server listening",
 			)
